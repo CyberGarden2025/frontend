@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@styles/": ["./src/app/styles"],
+      "@styles/*": ["./src/app/styles/*"],
+      "@app": ["./src/app/"],
+      "@app/*": ["./src/app/*"],
+      "@pages": ["./src/pages/"],
+      "@pages/*": ["./src/pages/*"],
+      "@shared": ["./src/shared/"],
+      "@shared/*": ["./src/shared/*"],
+      "@assets": ["./src/shared/assets/"],
+      "@assets/*": ["./src/shared/assets/*"],
+      "@widgets": ["./src/widgets/"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@features": ["./src/features/"],
+      "@features/*": ["./src/features/*"],
+      "@entities": ["./src/entities/"],
+      "@entities/*": ["./src/entities/*"]
+    }
+  },
+  "include": ["src"]
+}
