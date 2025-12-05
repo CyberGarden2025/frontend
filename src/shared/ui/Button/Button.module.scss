@@ -1,0 +1,134 @@
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.rootLarge {
+    padding: 18px 22px 18px 18px;
+    gap: 12px;
+}
+
+.rootMedium {
+    padding: 12px 16px 12px 12px;
+    gap: 8px;
+}
+
+.rootPrimary {
+    background-color: rgba(243, 247, 244, 0.8);
+}
+
+.rootPrimaryDefault {
+    cursor: pointer;
+}
+
+.rootSecondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
+.rootSecondaryDefault {
+    cursor: pointer;
+}
+
+.rootSecondaryActive {
+    background-color: var(--bg-surface4, #f5f5f5);
+}
+
+.rootVariant4 {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
+.rootVariant4Active {
+    background-color: #e9eeea;
+}
+
+.rootDisabled {
+    background-color: var(--button-primary-accent-bg-color-disabled, rgba(153, 153, 153, 0.1));
+    cursor: not-allowed;
+}
+
+.root:disabled {
+    cursor: not-allowed;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rootLarge .iconContainer {
+    width: 20px;
+    height: 20px;
+}
+
+.rootMedium .iconContainer {
+    width: 16px;
+    height: 16px;
+}
+
+.labelContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rootLarge .labelContainer {
+    padding: 0 4px 0 0;
+}
+
+.rootMedium .labelContainer {
+    padding: 0;
+}
+
+.label {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    font-style: normal;
+    flex-shrink: 0;
+}
+
+.labelLarge {
+    font-size: 18px;
+}
+
+.labelMedium {
+    font-size: 16px;
+}
+
+.labelPrimaryDefault {
+    color: var(--fg-default, #1f1f1f);
+}
+
+.labelSecondaryDefault {
+    color: var(--fg-default, #1f1f1f);
+}
+
+.labelSecondaryActive {
+    color: var(--fg-soft, #999999);
+}
+
+.labelVariant4Default {
+    color: var(--fg-default, #1f1f1f);
+}
+
+.labelVariant4Active {
+    color: var(--fg-soft, #999999);
+}
+
+.labelDisabledDefault {
+    color: var(--fg-disabled, rgba(153, 153, 153, 0.5));
+}
+

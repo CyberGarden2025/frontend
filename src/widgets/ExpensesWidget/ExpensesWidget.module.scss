@@ -1,0 +1,113 @@
+.root {
+    backdrop-filter: blur(5px);
+    background-color: rgba(230, 230, 230, 0.1);
+    border: 1px solid var(--border-soft, rgba(153, 153, 153, 0.25));
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.headerLeft {
+    display: flex;
+    flex: 1 0 0;
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+}
+
+.leftIconContainer {
+    flex-shrink: 0;
+}
+
+.title {
+    font-family: 'Poppins', 'Noto Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    flex: 1 0 0;
+    min-width: 0;
+    margin: 0;
+    padding: 2px 0 0 0;
+    white-space: pre-wrap;
+}
+
+.headerRight {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.amountSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 16px 0 0 48px;
+    width: 100%;
+}
+
+.amountContainer {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    width: 100%;
+    line-height: 0;
+}
+
+.amountThousands {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.amountHundreds {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: normal;
+    color: var(--fg-soft, #999999);
+    flex: 1 0 0;
+    min-width: 0;
+    white-space: pre-wrap;
+}
+
+.monthLabel {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    padding: 0 4px;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+.chartContainer {
+    display: flex;
+    width: 100%;
+    height: 196px;
+    padding: 0;
+}
+
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
