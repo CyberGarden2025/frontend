@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="42" height="278" viewBox="0 0 42 278" fill="none">
+  <g id="Repeat group 1_inner" data-figma-trr="l12p20-0f">
+    <path d="M0 47.4444L42 0V10.1111L0 57.5556V47.4444Z" fill="#D9D9D9"/>
+  </g>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 20)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 40)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 60)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 80)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 100)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 120)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 140)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 160)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 180)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 200)"/>
+  <use xlink:href="#Repeat%20group%201_inner" transform="translate(0 220)"/>
+</svg>
+
