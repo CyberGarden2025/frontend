@@ -1,0 +1,144 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    position: relative;
+}
+
+.chartWrapper {
+    width: 206px;
+    height: 206px;
+    position: relative;
+}
+
+.chartWrapper :global(.recharts-pie-sector) {
+    outline: none;
+    border: none;
+}
+
+.chartWrapper :global(.recharts-pie-sector:focus),
+.chartWrapper :global(.recharts-pie-sector:active),
+.chartWrapper :global(.recharts-pie-sector:focus-visible) {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.chartWrapper :global(.recharts-wrapper) {
+    outline: none;
+}
+
+.chartWrapper :global(.recharts-wrapper:focus),
+.chartWrapper :global(.recharts-wrapper:active),
+.chartWrapper :global(.recharts-wrapper:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+.chartWrapper :global(.recharts-surface) {
+    outline: none;
+}
+
+.chartWrapper :global(.recharts-surface:focus),
+.chartWrapper :global(.recharts-surface:active),
+.chartWrapper :global(.recharts-surface:focus-visible) {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.chartWrapper :global(.recharts-layer) {
+    outline: none;
+}
+
+.chartWrapper :global(.recharts-layer:focus),
+.chartWrapper :global(.recharts-layer:active),
+.chartWrapper :global(.recharts-layer:focus-visible) {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.chartWrapper :global(svg:focus),
+.chartWrapper :global(svg:active),
+.chartWrapper :global(svg:focus-visible) {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.badgeWrapper {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.cell {
+    border-radius: 100px;
+    outline: none;
+    border: none;
+}
+
+.cellStriped {
+    border-radius: 100px;
+    outline: none;
+    border: none;
+}
+
+.cell:focus,
+.cell:active,
+.cell:focus-visible {
+    outline: none;
+    border: none;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.legendItem {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.legendIndicator {
+    width: 13px;
+    height: 10px;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.legendIndicatorStriped {
+    background-color: #e6e6e6;
+}
+
+.legendLabel {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-size: 12px;
+    line-height: normal;
+    font-weight: 400;
+    color: var(--fg-default, #1f1f1f);
+    flex-shrink: 0;
+}
+
