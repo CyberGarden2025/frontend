@@ -49,6 +49,7 @@ export const useFirebaseNotifications = (): UseFirebaseNotificationsReturn => {
         }
 
         const unsubscribe = onMessage(messagingInstance, (payload) => {
+            console.log('Foreground message received:', payload);
             if (Notification.permission === 'granted') {
                 new Notification(payload.notification?.title || 'Notification', {
                     body: payload.notification?.body,

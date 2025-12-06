@@ -24,10 +24,12 @@ export const TransactionCard: FC<TransactionCardProps> = ({
     style,
 }) => {
     const formatAmount = (amount: number): string => {
-        return amount.toLocaleString('ru-RU');
+        return Math.abs(amount).toLocaleString('ru-RU');
     };
 
     const valueFormatted = formatAmount(value);
+    const isPositive = value >= 0;
+    const amountPrefix = isPositive ? '+' : '–';
 
     return (
         <div
@@ -44,6 +46,10 @@ export const TransactionCard: FC<TransactionCardProps> = ({
                     state="default"
                     size="medium"
                     badge={false}
+                    className={clsx({
+                        [styles.iconButtonPositive]: isPositive,
+                        [styles.iconButtonNegative]: !isPositive,
+                    })}
                 />
             </div>
 
@@ -56,8 +62,16 @@ export const TransactionCard: FC<TransactionCardProps> = ({
                 </div>
             </div>
 
-            <div className={styles.amountContainer}>
-                <p className={styles.value}>{valueFormatted}</p>
+            <div
+                className={clsx(styles.amountContainer, {
+                    [styles.amountContainerPositive]: isPositive,
+                    [styles.amountContainerNegative]: !isPositive,
+                })}
+            >
+                <div className={styles.amountValueWrapper}>
+                    <p className={styles.amountPrefix}>{amountPrefix}</p>
+                    <p className={styles.value}>{valueFormatted}</p>
+                </div>
                 <p className={styles.currency}>₽</p>
             </div>
         </div>
