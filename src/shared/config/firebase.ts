@@ -18,8 +18,17 @@ export const analytics: Analytics | null = typeof window !== 'undefined' ? getAn
 
 export const getMessagingInstance = (): Messaging | null => {
     if (typeof window === 'undefined') {
+        console.log('[Firebase Config] Window not available');
         return null;
     }
-    return getMessaging(app);
+    
+    try {
+        const messaging = getMessaging(app);
+        console.log('[Firebase Config] Messaging instance created');
+        return messaging;
+    } catch (error) {
+        console.error('[Firebase Config] Error creating messaging instance:', error);
+        return null;
+    }
 };
 
