@@ -1,4 +1,4 @@
-import { type FC, useMemo } from 'react';
+import { type FC, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OperationsWidget, TransactionsListWidget } from '@widgets';
 import { IconButton, Button } from '@shared/ui';
@@ -8,13 +8,12 @@ import {
     ArrowBackIcon,
     SearchIcon,
     MoreIcon,
-    SettingsIcon,
-    ChatIcon,
     ExpandIcon,
     FilterIcon,
     WalletIcon,
 } from '@shared/ui/icons';
 import styles from './OperationsPage.module.scss';
+import { ExpenseAddModal } from '@entities/expense';
 
 const categoryLabels: Record<string, string> = {
     Food: 'Еда',
@@ -51,9 +50,10 @@ const getOperationLabel = (category: string): string => {
 
 export const OperationsPage: FC = () => {
     const navigate = useNavigate();
+    const [addModalOpen, setAddModalOpen] = useState<boolean>(false)
     const { data: backendTransactions, isLoading, error } = useGetTransactionsQuery(1);
     
-    const { data: totalData, isLoading: isTotalLoading } = useGetTransactionsTotalQuery({
+    const { data: totalData } = useGetTransactionsTotalQuery({
         userId: 1,
         start: '2023-08-01',
         end: '2023-08-31',
@@ -111,6 +111,15 @@ export const OperationsPage: FC = () => {
                     <div className={styles.filtersRow}>
                         <div className={styles.filtersLeft}>
                             <Button
+                                label="Добавить операцию"
+                                variant="primary"
+                                state="default"
+                                size="medium"
+                                icon={<ExpandIcon />}
+                                showIcon={true}
+                                onClick={() => setAddModalOpen(true)}
+                            />
+                            <Button
                                 label="Месяц"
                                 variant="primary"
                                 state="default"
@@ -155,6 +164,7 @@ export const OperationsPage: FC = () => {
                     </div>
                 </div>
             </div>
+            <ExpenseAddModal isOpen={addModalOpen} setIsOpen={setAddModalOpen}  />
         </div>
     );
 };
