@@ -38,9 +38,6 @@ export const MainPage = () => {
             <Button onClick={() => setIsOpen(!isOpen)} label={'123'}/>
             <ExpenseFilters isOpen={isOpen} setIsOpen={setIsOpen}/>
 
-            <div style={{ marginTop: '20px', maxWidth: '600px' }}>
-                <TransactionsListWidget transactions={transactions} />
-            </div>
 
             {permission === 'default' && (
                 <div>
