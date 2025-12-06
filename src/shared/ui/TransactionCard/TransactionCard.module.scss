@@ -1,5 +1,5 @@
 .root {
-    background-color: var(--bg-surface4, #f5f5f5);
+    background-color: rgba(243, 247, 244, 0.8);
     display: flex;
     gap: 12px;
     align-items: center;
@@ -22,11 +22,20 @@
     flex-shrink: 0;
 }
 
+.iconButtonPositive :global(button) {
+    border-color: var(--brand-default, #50b848) !important;
+}
+
+.iconButtonNegative :global(button) {
+    border-color: var(--border-soft, rgba(153, 153, 153, 0.25)) !important;
+}
+
 .content {
     display: flex;
     flex: 1 0 0;
     align-items: flex-end;
     min-width: 0;
+    padding-right: 8px;
 }
 
 .textContainer {
@@ -57,7 +66,9 @@
     color: var(--fg-default, #1f1f1f);
     margin: 0;
     width: 100%;
-    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .amountContainer {
@@ -71,13 +82,44 @@
     line-height: normal;
 }
 
-.value {
-    color: var(--black1, #232323);
+.amountValueWrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.amountPrefix {
     margin: 0;
+    flex-shrink: 0;
+}
+
+.value {
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .currency {
-    color: var(--black1, #232323);
     margin: 0;
+    flex-shrink: 0;
+}
+
+.amountContainerPositive {
+    color: var(--brand-default, #50b848);
+}
+
+.amountContainerPositive .amountPrefix,
+.amountContainerPositive .value,
+.amountContainerPositive .currency {
+    color: var(--brand-default, #50b848);
+}
+
+.amountContainerNegative {
+    color: var(--status-02-default, #d85752);
+}
+
+.amountContainerNegative .amountPrefix,
+.amountContainerNegative .value,
+.amountContainerNegative .currency {
+    color: var(--status-02-default, #d85752);
 }
 

@@ -16,12 +16,34 @@ firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
+    console.log('Background message received:', payload);
     const notificationTitle = payload.notification?.title || 'Notification';
     const notificationOptions = {
         body: payload.notification?.body,
         icon: payload.notification?.icon || '/vite.svg',
+        badge: '/vite.svg',
+        tag: 'firebase-notification',
+        requireInteraction: false,
     };
 
-    self.registration.showNotification(notificationTitle, notificationOptions);
+    return self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+self.addEventListener('notificationclick', (event) => {
+    console.log('Notification clicked:', event);
+    event.notification.close();
+    
+    event.waitUntil(
+        clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+            for (const client of clientList) {
+                if (client.url === '/' && 'focus' in client) {
+                    return client.focus();
+                }
+            }
+            if (clients.openWindow) {
+                return clients.openWindow('/');
+            }
+        })
+    );
 });
 
