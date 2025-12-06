@@ -3,9 +3,10 @@ import { type FC, useMemo } from 'react';
 import { TransactionCard } from '@shared/ui';
 import type { TransactionCardProps } from '@shared/ui';
 import styles from './TransactionsListWidget.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 export interface Transaction {
-    id?: string;
+    id: number;
     operationLabel: string;
     value: number;
     category?: string;
@@ -65,6 +66,7 @@ export const TransactionsListWidget: FC<TransactionsListWidgetProps> = ({
     className,
     style,
 }) => {
+    const navigate = useNavigate()
     const groupedTransactions = useMemo(() => {
         const grouped = groupTransactionsByDay(transactions);
         const sortedDates = Array.from(grouped.keys()).sort((a, b) => {
@@ -110,7 +112,9 @@ export const TransactionsListWidget: FC<TransactionsListWidgetProps> = ({
                                 value={transaction.value}
                                 category={transaction.category}
                                 icon={transaction.icon}
-                                onClick={transaction.onClick}
+                                onClick={() => {
+                                    navigate(`/operations/${transaction.id}`)
+                                }}
                             />
                         ))}
                     </div>

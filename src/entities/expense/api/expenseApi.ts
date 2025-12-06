@@ -1,15 +1,22 @@
 import mainApi from "@shared/api/mainApi";
 import type { NewTransaction } from "../interface";
+import type { Operation } from "../interface/operation.interface";
 
 export const expenseApi = mainApi.injectEndpoints({
     endpoints: (builder) => ({
-        addOperation: builder.mutation<any, NewTransaction>({
+        addOperation: builder.mutation<Operation, NewTransaction>({
             query: (body) => ({
                 body,
-                url: `/transactions/1`,
+                url: `/transactions`,
                 method: 'POST',
             }),
         }),
+        getOperation: builder.query<Operation, {id: number}>({
+            query: ({id}) => ({
+                url: `/transactions/${id}/`,
+
+            })
+        })
     })
 }) 
-export const {useAddOperationMutation} = expenseApi
+export const {useAddOperationMutation, useLazyGetOperationQuery} = expenseApi

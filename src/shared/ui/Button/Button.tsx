@@ -7,7 +7,7 @@ export type ButtonState = 'default' | 'active';
 export type ButtonSize = 'large' | 'medium';
 
 export interface ButtonProps {
-    label: string;
+    label: ReactNode;
     variant?: ButtonVariant;
     state?: ButtonState;
     size?: ButtonSize;

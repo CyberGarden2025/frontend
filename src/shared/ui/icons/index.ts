@@ -4,10 +4,13 @@ export * from './ChatIcon';
 export * from './ExpandIcon';
 export * from './MoreIcon';
 export * from './CalendarIcon';
+export * from './CardIcon';
 export * from './GraphIcon';
 export * from './RefreshIcon';
 export * from './ArrowBackIcon';
 export * from './SearchIcon';
 export * from './SettingsIcon';
 export * from './WalletIcon';
-
+export * from './SalaryIcon';
+export * from './ShoppingIcon';
+export * from "./EditIcon"

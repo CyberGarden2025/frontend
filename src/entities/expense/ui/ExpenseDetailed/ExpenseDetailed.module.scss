@@ -1,0 +1,115 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    & .card {
+        background-color: #fff;
+        padding: 16px;
+        border-radius: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & .text {
+            font-size: 14px;
+            font-family: 'TeX Gyre Adventor';
+            font-weight: 400;
+            line-height: 0;
+        }
+        
+        & .cardIcon {
+            padding: 14px 12px;
+            border: 1px solid #99999926;
+            background-color: #fff;
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+
+
+            &Text {
+                font-size: 14px;
+                font-family: 'TeX Gyre Adventor';
+                font-weight: 400;
+                line-height: 0;
+            }
+            
+        }
+        & .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            & .textCol {
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                & .subTitle {
+                    font-size: 20px;
+                    font-family: 'TeX Gyre Adventor';
+                    font-weight: 400;
+                    line-height: 0;
+                }
+                & .category {
+                    color: #BDBDBD;
+                    font-size: 12px;
+                    font-family: 'TeX Gyre Adventor';
+                    font-weight: 400;
+                    line-height: 0;
+                }
+            }
+
+            & .iconCol {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 24px;
+
+                & .icon {
+                    border-radius: 50%;
+                    padding: 16px;
+                    border: 1px solid #99999940;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                & .sum {
+                    font-size: 32px;
+                    font-family: 'TeX Gyre Adventor';
+                    font-weight: 400;
+                    line-height: 0;
+
+                    &.increase {
+                        color: #50B848;
+                    }
+                    &.decrease {
+                        color: #D85752;
+                    }
+                }
+            }
+        }
+    }
+    & .actions {
+        display: flex;
+        gap: 8px;
+        & button {
+            flex: 1;
+            padding: 16px ;
+            background-color: #fff;
+            & .buttonContent {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                & .actionText {
+                    line-height: 0;
+                    &.warning {
+                        color: #D85752;
+                    }
+                }
+            }
+        }
+    }
+}
