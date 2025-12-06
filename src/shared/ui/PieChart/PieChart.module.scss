@@ -10,6 +10,8 @@
 .chartWrapper {
     width: 206px;
     height: 206px;
+    min-width: 206px;
+    min-height: 206px;
     position: relative;
 }
 
@@ -141,4 +143,3 @@
     color: var(--fg-default, #1f1f1f);
     flex-shrink: 0;
 }
-
