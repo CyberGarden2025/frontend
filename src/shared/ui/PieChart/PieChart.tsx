@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { type FC } from 'react';
-import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 import { ChartColumnValueBadge } from '@shared/ui';
 import { usePieChart } from './usePieChart';
 import styles from './PieChart.module.scss';
@@ -34,62 +34,62 @@ export const PieChart: FC<PieChartProps> = ({
         getCategoryIsStriped,
     } = usePieChart(categories, selectedCategoryIndex);
 
+    const chartSize = 206;
+
     return (
         <div className={clsx(styles.root, className)} style={style}>
             <div className={styles.chartWrapper}>
-                <ResponsiveContainer width="100%" height="100%">
-                    <RechartsPieChart style={{ outline: 'none' }}>
-                        <defs>
-                            {chartData.map((entry, index) => {
-                                if (entry.isStriped) {
-                                    return (
-                                        <pattern
-                                            key={`pattern-${index}`}
-                                            id={`striped-${index}`}
-                                            patternUnits="userSpaceOnUse"
-                                            width="14"
-                                            height="8"
-                                        >
-                                            <rect width="8" height="14" fill="#d9d9d9" />
-                                            <rect width="8" height="8" x="4" fill="#ffffff" />
-                                        </pattern>
-                                    );
-                                }
-                                return null;
-                            })}
-                        </defs>
-                        <Pie
-                            data={chartData}
-                            cx="50%"
-                            cy="50%"
-                            innerRadius={60}
-                            outerRadius={103}
-                            paddingAngle={2}
-                            dataKey="value"
-                            stroke="none"
-                            cornerRadius={8}
-                            startAngle={90}
-                            endAngle={-270}
-                            onClick={(data: any, index: number) => {
-                                if (data && typeof index === 'number') {
-                                    handleCategoryClick(index);
-                                }
-                            }}
-                            style={{ cursor: 'pointer', outline: 'none' }}
-                            activeShape={null}
-                        >
-                            {chartData.map((entry, index) => (
-                                <Cell
-                                    key={`cell-${index}`}
-                                    fill={entry.isStriped ? `url(#striped-${index})` : entry.color}
-                                    className={clsx(styles.cell, {
-                                        [styles.cellStriped]: entry.isStriped,
-                                    })}
-                                />
-                            ))}
-                        </Pie>
-                    </RechartsPieChart>
-                </ResponsiveContainer>
+                <RechartsPieChart width={chartSize} height={chartSize} style={{ outline: 'none' }}>
+                    <defs>
+                        {chartData.map((entry, index) => {
+                            if (entry.isStriped) {
+                                return (
+                                    <pattern
+                                        key={`pattern-${index}`}
+                                        id={`striped-${index}`}
+                                        patternUnits="userSpaceOnUse"
+                                        width="14"
+                                        height="8"
+                                    >
+                                        <rect width="8" height="14" fill="#d9d9d9" />
+                                        <rect width="8" height="8" x="4" fill="#ffffff" />
+                                    </pattern>
+                                );
+                            }
+                            return null;
+                        })}
+                    </defs>
+                    <Pie
+                        data={chartData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={103}
+                        paddingAngle={2}
+                        dataKey="value"
+                        stroke="none"
+                        cornerRadius={8}
+                        startAngle={90}
+                        endAngle={-270}
+                        onClick={(data: any, index: number) => {
+                            if (data && typeof index === 'number') {
+                                handleCategoryClick(index);
+                            }
+                        }}
+                        style={{ cursor: 'pointer', outline: 'none' }}
+                        activeShape={null}
+                    >
+                        {chartData.map((entry, index) => (
+                            <Cell
+                                key={`cell-${index}`}
+                                fill={entry.isStriped ? `url(#striped-${index})` : entry.color}
+                                className={clsx(styles.cell, {
+                                    [styles.cellStriped]: entry.isStriped,
+                                })}
+                            />
+                        ))}
+                    </Pie>
+                </RechartsPieChart>
                 {badgeData && !isInitialLoad && (
                     <div
                         key={`badge-${activeCategoryIndex}`}
@@ -140,4 +140,3 @@ export const PieChart: FC<PieChartProps> = ({
         </div>
     );
 };
-
