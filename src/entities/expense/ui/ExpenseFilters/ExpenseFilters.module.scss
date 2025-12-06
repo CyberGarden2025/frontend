@@ -1,0 +1,32 @@
+.wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+
+
+.modal {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.modalContent {
+    pointer-events: auto;
+    position: relative;
+    background-color: rgba(256, 252, 254, 0.3);
+    border-radius: 24px;
+    padding: 14px;
+    min-width: 350px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    
+
+    & .buttonWrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
