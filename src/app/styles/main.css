@@ -1,2 +1,13 @@
 @import './fonts.css';
 
+body {
+    background-color: #E9EEEA;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    background-color: #E9EEEA;
+    min-height: 100vh;
+}
+
