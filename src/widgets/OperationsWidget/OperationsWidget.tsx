@@ -64,24 +64,24 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
 
             <div className={styles.content}>
                 <div className={styles.sectionsRow}>
-                    <div className={styles.incomeSection}>
-                        <div className={styles.label}>Поступления</div>
-                        <div className={styles.amount}>
-                            <span className={styles.amountValue}>{incomeFormatted}</span>
-                            <span className={styles.currency}>₽</span>
-                        </div>
-                    </div>
-
-                    <div className={styles.expensesSection}>
-                        <div className={styles.label}>Расходы</div>
-                        <div className={styles.amount}>
-                            <span className={styles.amountValue}>{expensesFormatted}</span>
-                            <span className={styles.currency}>₽</span>
-                        </div>
+                <div className={styles.incomeSection}>
+                    <div className={styles.label}>Поступления</div>
+                    <div className={styles.amount}>
+                        <span className={styles.amountValue}>{incomeFormatted}</span>
+                        <span className={styles.currency}>₽</span>
                     </div>
                 </div>
 
-                <div className={styles.barContainer}>
+                <div className={styles.expensesSection}>
+                    <div className={styles.label}>Расходы</div>
+                    <div className={styles.amount}>
+                        <span className={styles.amountValue}>{expensesFormatted}</span>
+                        <span className={styles.currency}>₽</span>
+                    </div>
+                    </div>
+                </div>
+
+                    <div className={styles.barContainer}>
                     <div className={styles.divider} />
                     <div className={styles.barsWrapper}>
                         <div

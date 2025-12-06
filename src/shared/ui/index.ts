@@ -3,5 +3,6 @@ export * from './Button';
 export * from './IconButton';
 export * from './PieChart';
 export * from './ChartColumnValueBadge';
+export * from './TransactionCard';
 
 
