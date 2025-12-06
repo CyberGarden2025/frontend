@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Button } from '@shared/ui';
 import { ChatIcon } from '@shared/ui/icons';
@@ -23,6 +24,8 @@ export const FinancialCushionWidget: FC<FinancialCushionWidgetProps> = ({
     className,
     style,
 }) => {
+    const navigate = useNavigate();
+
     const formatAmount = (amount: number): string => {
         return new Intl.NumberFormat('ru-RU').format(amount);
     };
@@ -88,19 +91,24 @@ export const FinancialCushionWidget: FC<FinancialCushionWidgetProps> = ({
                 </div>
             </div>
 
-            {onAskAssistant && (
-                <div className={styles.footer}>
-                    <Button
-                        label="Спросить ассистента"
-                        variant="primary"
-                        state="default"
-                        size="medium"
-                        icon={<ChatIcon />}
-                        showIcon={true}
-                        onClick={() => onAskAssistant('Расскажи подробнее о моей финансовой подушке и как её увеличить')}
-                    />
-                </div>
-            )}
+            <div className={styles.footer}>
+                <Button
+                    label="Спросить ассистента"
+                    variant="primary"
+                    state="default"
+                    size="medium"
+                    icon={<ChatIcon />}
+                    showIcon={true}
+                    onClick={() => {
+                        const message = 'Расскажи подробнее о моей финансовой подушке и как её увеличить';
+                        if (onAskAssistant) {
+                            onAskAssistant(message);
+                        } else {
+                            navigate('/chat', { state: { message } });
+                        }
+                    }}
+                />
+            </div>
         </div>
     );
 };

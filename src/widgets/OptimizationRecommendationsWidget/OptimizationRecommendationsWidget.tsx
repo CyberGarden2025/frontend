@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Button } from '@shared/ui';
 import { ChatIcon } from '@shared/ui/icons';
@@ -26,6 +27,8 @@ export const OptimizationRecommendationsWidget: FC<OptimizationRecommendationsWi
     className,
     style,
 }) => {
+    const navigate = useNavigate();
+
     const formatAmount = (amount: number): string => {
         return new Intl.NumberFormat('ru-RU').format(amount);
     };
@@ -86,19 +89,24 @@ export const OptimizationRecommendationsWidget: FC<OptimizationRecommendationsWi
                                 Экономия: {formatAmount(recommendation.potentialSavings)} ₽/мес
                             </div>
                         </div>
-                        {onAskAboutRecommendation && (
-                            <div className={styles.recommendationAction}>
-                                <Button
-                                    label="Уточнить в чате"
-                                    variant="secondary"
-                                    state="default"
-                                    size="medium"
-                                    icon={<ChatIcon />}
-                                    showIcon={true}
-                                    onClick={() => onAskAboutRecommendation(recommendation)}
-                                />
-                            </div>
-                        )}
+                        <div className={styles.recommendationAction}>
+                            <Button
+                                label="Уточнить в чате"
+                                variant="secondary"
+                                state="default"
+                                size="medium"
+                                icon={<ChatIcon />}
+                                showIcon={true}
+                                onClick={() => {
+                                    if (onAskAboutRecommendation) {
+                                        onAskAboutRecommendation(recommendation);
+                                    } else {
+                                        const message = `Расскажи подробнее о рекомендации: "${recommendation.title}". ${recommendation.description}`;
+                                        navigate('/chat', { state: { message } });
+                                    }
+                                }}
+                            />
+                        </div>
                     </div>
                 ))}
             </div>

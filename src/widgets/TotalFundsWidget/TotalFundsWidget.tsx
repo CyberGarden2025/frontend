@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { IconButton } from '@shared/ui';
 import { MoreIcon, SettingsIcon, WalletIcon, ChatIcon, ExpandIcon, ArrowBackIcon } from '@shared/ui/icons';
@@ -21,6 +22,8 @@ export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
     className,
     style,
 }) => {
+    const navigate = useNavigate();
+
     const formatAmount = (amount: number): string => {
         return new Intl.NumberFormat('ru-RU').format(amount);
     };
@@ -52,6 +55,7 @@ export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
                             size="medium"
                             badge={notificationCount > 0}
                             badgeValue={String(notificationCount)}
+                            onClick={() => navigate('/chat')}
                         />
                     </div>
                     <div className={styles.iconButtonWrapper}>
@@ -60,6 +64,7 @@ export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
                             variant="primary"
                             state="default"
                             size="medium"
+                            onClick={() => navigate('/operations')}
                         />
                     </div>
                 </div>

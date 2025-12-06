@@ -129,6 +129,7 @@ export const MainPage: FC = () => {
                                 </svg>
                             }
                             showIcon={true}
+                            onClick={() => navigate('/operations')}
                         />
                         <Button
                             label="Обсудить в чате"
@@ -155,10 +156,12 @@ export const MainPage: FC = () => {
                                 icon: <ChatIcon />,
                                 badge: true,
                                 badgeValue: '3',
+                                onClick: handleChatClick,
                             },
                             {
                                 icon: <div style={{transform: "rotate(135deg)"}}><ArrowBackIcon /></div>,
                                 badge: false,
+                                onClick: () => navigate('/financial-summary'),
                             },
                         ]}
                     />
@@ -177,6 +180,7 @@ export const MainPage: FC = () => {
                                 icon: <ChatIcon />,
                                 badge: true,
                                 badgeValue: '1',
+                                onClick: handleChatClick,
                             },
                             {
                                 icon: <div style={{transform: "rotate(135deg)"}}><ArrowBackIcon /></div>,

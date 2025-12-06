@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { PieChart, Button } from '@shared/ui';
 import { ChatIcon } from '@shared/ui/icons';
@@ -24,6 +25,8 @@ export const IncomeExpenseStructureWidget: FC<IncomeExpenseStructureWidgetProps>
     className,
     style,
 }) => {
+    const navigate = useNavigate();
+
     const formatAmount = (amount: number): string => {
         return new Intl.NumberFormat('ru-RU').format(amount);
     };
@@ -31,8 +34,11 @@ export const IncomeExpenseStructureWidget: FC<IncomeExpenseStructureWidgetProps>
     const savingsRate = totalIncome > 0 ? ((totalIncome - totalExpenses) / totalIncome) * 100 : 0;
 
     const handleAskAssistant = () => {
+        const message = 'Расскажи подробнее о структуре моих доходов и расходов';
         if (onAskAssistant) {
-            onAskAssistant('Расскажи подробнее о структуре моих доходов и расходов');
+            onAskAssistant(message);
+        } else {
+            navigate('/chat', { state: { message } });
         }
     };
 
@@ -70,19 +76,17 @@ export const IncomeExpenseStructureWidget: FC<IncomeExpenseStructureWidgetProps>
                 </div>
             </div>
 
-            {onAskAssistant && (
-                <div className={styles.footer}>
-                    <Button
-                        label="Спросить ассистента"
-                        variant="primary"
-                        state="default"
-                        size="medium"
-                        icon={<ChatIcon />}
-                        showIcon={true}
-                        onClick={handleAskAssistant}
-                    />
-                </div>
-            )}
+            <div className={styles.footer}>
+                <Button
+                    label="Спросить ассистента"
+                    variant="primary"
+                    state="default"
+                    size="medium"
+                    icon={<ChatIcon />}
+                    showIcon={true}
+                    onClick={handleAskAssistant}
+                />
+            </div>
         </div>
     );
 };
