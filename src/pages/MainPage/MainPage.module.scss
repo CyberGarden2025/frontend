@@ -1,0 +1,119 @@
+.root {
+    min-height: 100vh;
+    background-color: #e9eeea;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.container {
+    max-width: 358px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px 0 0 0;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.headerTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.headerTopRight {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.headerTitle {
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 0 10px;
+}
+
+.title {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #000000;
+    margin: 0;
+    text-align: center;
+    white-space: pre-wrap;
+}
+
+.headerAvatar {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 2px 0 2px 4px;
+    border-radius: 100px;
+    flex-shrink: 0;
+}
+
+.avatar {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+}
+
+.avatarImage {
+    position: absolute;
+    inset: 0;
+    background-color: var(--brand-muted, #a8dca3);
+    border-radius: 50%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTIiIGhlaWdodD0iNTIiIHZpZXdCb3g9IjAgMCA1MiA1MiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjYiIGN5PSIyNiIgcj0iMjYiIGZpbGw9IiNBMERDQTMiLz4KPHBhdGggZD0iTTI2IDIwQzI5LjMxMzcgMjAgMzIgMTcuMzEzNyAzMiAxNEMzMiAxMC42ODYzIDI5LjMxMzcgOCAyNiA4QzIyLjY4NjMgOCAyMCAxMC42ODYzIDIwIDE0QzIwIDE3LjMxMzcgMjIuNjg2MyAyMCAyNiAyMFoiIGZpbGw9IiMxRjFGMUYiLz4KPHBhdGggZD0iTTE2IDM0QzE2IDI4LjQ3NzEgMjAuNDc3MSAyNCAyNiAyNEMzMS41MjI5IDI0IDM2IDI4LjQ3NzEgMzYgMzRIMTZaIiBmaWxsPSIjMUYxRjFGIi8+Cjwvc3ZnPgo=');
+    background-size: cover;
+    background-position: center;
+}
+
+.greeting {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.greetingText {
+    flex: 1 0 0;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+    color: #000000;
+    margin: 0;
+    min-width: 0;
+    white-space: pre-wrap;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    width: 100%;
+}
+
+.actionsRow {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+

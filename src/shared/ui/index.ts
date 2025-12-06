@@ -4,5 +4,9 @@ export * from './IconButton';
 export * from './PieChart';
 export * from './ChartColumnValueBadge';
 export * from './TransactionCard';
+export * from './Message';
+export * from './MessageList';
+export * from './MessageInput';
+export * from './MessageButtons';
 
 

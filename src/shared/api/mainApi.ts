@@ -12,7 +12,15 @@ const ensureProtocol = (host: string): string => {
     return host.startsWith('http://') || host.startsWith('https://') ? host : `http://${host}`;
 };
 
-export const apiBaseUrl = `${ensureProtocol(import.meta.env.VITE_AGW_HOST)}:${import.meta.env.VITE_AGW_PORT}/api`;
+export const apiBaseUrl = `${ensureProtocol(import.meta.env.VITE_AGW_HOST || 'localhost')}:${import.meta.env.VITE_AGW_PORT || '8000'}/api`;
+
+if (import.meta.env.DEV) {
+    console.log('[API] Base URL:', apiBaseUrl);
+    console.log('[API] Environment:', {
+        VITE_AGW_HOST: import.meta.env.VITE_AGW_HOST,
+        VITE_AGW_PORT: import.meta.env.VITE_AGW_PORT,
+    });
+}
 
 const baseQuery = fetchBaseQuery({
     baseUrl: apiBaseUrl,
@@ -32,6 +40,16 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     extraOptions,
 ) => {
     let result = await baseQuery(args, api, extraOptions);
+
+    if (result?.error) {
+        if (import.meta.env.DEV) {
+            console.error('[API] Request error:', {
+                status: result.error.status,
+                data: result.error.data,
+                url: typeof args === 'string' ? args : args.url,
+            });
+        }
+    }
 
     if (result?.error?.status === 401) {
         const refreshResult = await baseQuery('/auth/refresh-tokens', api, extraOptions);

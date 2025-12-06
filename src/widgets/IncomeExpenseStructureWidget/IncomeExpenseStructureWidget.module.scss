@@ -1,0 +1,113 @@
+.root {
+    backdrop-filter: blur(5px);
+    background-color: rgba(230, 230, 230, 0.1);
+    border: 1px solid var(--border-soft, rgba(153, 153, 153, 0.25));
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px 16px 24px 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.summaryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.summaryLabel {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+}
+
+.summaryValueIncome {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    color: #28a745;
+}
+
+.summaryValueExpense {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    color: #dc3545;
+}
+
+.summaryValueSavings {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+}
+
+.chartsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.chartSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.chartTitle {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    margin: 0;
+    padding: 0;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 8px;
+}
+

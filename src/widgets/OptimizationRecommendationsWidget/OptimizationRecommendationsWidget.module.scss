@@ -1,0 +1,122 @@
+.root {
+    backdrop-filter: blur(5px);
+    background-color: rgba(230, 230, 230, 0.1);
+    border: 1px solid var(--border-soft, rgba(153, 153, 153, 0.25));
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px 16px 24px 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.recommendationsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.recommendationItem {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    border: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
+.recommendationHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+.recommendationTitle {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--fg-default, #1f1f1f);
+    flex: 1;
+    min-width: 0;
+}
+
+.priorityBadge {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.recommendationDescription {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--fg-soft, #999999);
+}
+
+.recommendationFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
+.recommendationCategory {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
+    color: var(--fg-soft, #999999);
+}
+
+.recommendationSavings {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    color: #28a745;
+    text-align: right;
+}
+
+.recommendationAction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
