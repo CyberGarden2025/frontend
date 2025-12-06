@@ -1,0 +1,75 @@
+.root {
+    min-height: 100vh;
+    background-color: #e9eeea;
+    padding: 45px 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 358px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.headerTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.headerTopRight {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.title {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 42px;
+    color: #000000;
+    margin: 0;
+    padding: 0 10px;
+    white-space: pre-wrap;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    min-width: 0;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    > * {
+        flex-shrink: 0;
+    }
+}
+
+.widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    width: 100%;
+}
+

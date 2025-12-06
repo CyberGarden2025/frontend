@@ -1,4 +1,6 @@
 import { type FC } from 'react';
+import clsx from 'clsx';
+import styles from './MoreIcon.module.scss';
 
 export interface MoreIconProps {
     className?: string;
@@ -7,12 +9,48 @@ export interface MoreIconProps {
 
 export const MoreIcon: FC<MoreIconProps> = ({ className, style }) => {
     return (
-        <svg className={className} style={style} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.33333 6.66602C2.6 6.66602 2 7.26602 2 7.99935C2 8.73268 2.6 9.33268 3.33333 9.33268C4.06667 9.33268 4.66667 8.73268 4.66667 7.99935C4.66667 7.26602 4.06667 6.66602 3.33333 6.66602Z" stroke="#1F1F1F"/>
-            <path d="M12.6668 6.66602C11.9335 6.66602 11.3335 7.26602 11.3335 7.99935C11.3335 8.73268 11.9335 9.33268 12.6668 9.33268C13.4002 9.33268 14.0002 8.73268 14.0002 7.99935C14.0002 7.26602 13.4002 6.66602 12.6668 6.66602Z" stroke="#1F1F1F"/>
-            <path d="M7.99984 6.66602C7.2665 6.66602 6.6665 7.26602 6.6665 7.99935C6.6665 8.73268 7.2665 9.33268 7.99984 9.33268C8.73317 9.33268 9.33317 8.73268 9.33317 7.99935C9.33317 7.26602 8.73317 6.66602 7.99984 6.66602Z" stroke="#1F1F1F"/>
+        <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={clsx(styles.root, className)}
+            style={style}
+        >
+            <path
+                d="M14.6169 6.92422C15.7491 6.92422 16.6669 6.0064 16.6669 4.87422C16.6669 3.74203 15.7491 2.82422 14.6169 2.82422C13.4847 2.82422 12.5669 3.74203 12.5669 4.87422C12.5669 6.0064 13.4847 6.92422 14.6169 6.92422Z"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M5.3835 6.92422C6.51569 6.92422 7.43349 6.0064 7.43349 4.87422C7.43349 3.74203 6.51569 2.82422 5.3835 2.82422C4.25132 2.82422 3.3335 3.74203 3.3335 4.87422C3.3335 6.0064 4.25132 6.92422 5.3835 6.92422Z"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M14.6169 17.1742C15.7491 17.1742 16.6669 16.2564 16.6669 15.1242C16.6669 13.992 15.7491 13.0742 14.6169 13.0742C13.4847 13.0742 12.5669 13.992 12.5669 15.1242C12.5669 16.2564 13.4847 17.1742 14.6169 17.1742Z"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <path
+                d="M5.3835 17.1742C6.51569 17.1742 7.43349 16.2564 7.43349 15.1242C7.43349 13.992 6.51569 13.0742 5.3835 13.0742C4.25132 13.0742 3.3335 13.992 3.3335 15.1242C3.3335 16.2564 4.25132 17.1742 5.3835 17.1742Z"
+                stroke="currentColor"
+                strokeWidth="1.3"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
         </svg>
-
     );
 };
 

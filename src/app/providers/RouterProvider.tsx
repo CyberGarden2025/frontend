@@ -1,4 +1,5 @@
 import { MainPage } from '@pages/MainPage';
+import { FinancialSummaryPage } from '@pages/FinancialSummaryPage';
 import type { FC } from 'react';
 import { createBrowserRouter, RouterProvider as ReactRouter } from 'react-router-dom';
 
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
                 index: true,
                 element: <MainPage/>
                 
+            },
+            {
+                path: '/financial-summary',
+                element: <FinancialSummaryPage/>
             },
         ],
     },

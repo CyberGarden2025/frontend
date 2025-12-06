@@ -6,4 +6,7 @@ export * from './MoreIcon';
 export * from './CalendarIcon';
 export * from './GraphIcon';
 export * from './RefreshIcon';
+export * from './ArrowBackIcon';
+export * from './SearchIcon';
+export * from './SettingsIcon';
 
