@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useFirebaseNotifications } from '@shared/hooks';
+import { ExpenseFilters } from '@entities/expense';
+import { Button } from '@shared/ui';
 
 export const MainPage = () => {
     const { token, permission, requestPermission } = useFirebaseNotifications();
     const [copied, setCopied] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
 
     const copyToken = async () => {
         if (token) {
@@ -16,7 +19,8 @@ export const MainPage = () => {
     return (
         <div>
             <h1>Main Page</h1>
-            
+            <Button onClick={() => setIsOpen(!isOpen)} label={'123'}/>
+            <ExpenseFilters isOpen={isOpen} setIsOpen={setIsOpen}/>
 
             {permission === 'default' && (
                 <div>
