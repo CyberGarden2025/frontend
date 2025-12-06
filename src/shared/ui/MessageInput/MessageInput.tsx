@@ -1,4 +1,4 @@
-import { type FC, useState, KeyboardEvent, useRef, useEffect } from 'react';
+import { type FC, useState, type KeyboardEvent, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import { IconButton } from '@shared/ui';
 import { ChatIcon } from '@shared/ui/icons';
