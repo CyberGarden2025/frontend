@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useFirebaseNotifications } from '@shared/hooks';
 import { ExpenseFilters } from '@entities/expense';
 import { Button } from '@shared/ui';
+import { TransactionsListWidget } from '@widgets';
+import type { Transaction } from '@widgets';
+import { KanbanIcon } from '@shared/ui/icons';
 
 export const MainPage = () => {
     const userId = Number(import.meta.env.VITE_DEFAULT_USER_ID);
@@ -11,6 +14,7 @@ export const MainPage = () => {
         userId: resolvedUserId,
     });
     const [copied, setCopied] = useState(false);
+
     const [isOpen, setIsOpen] = useState(false)
     
     useEffect(() => {
@@ -33,6 +37,10 @@ export const MainPage = () => {
             <h1>Main Page</h1>
             <Button onClick={() => setIsOpen(!isOpen)} label={'123'}/>
             <ExpenseFilters isOpen={isOpen} setIsOpen={setIsOpen}/>
+
+            <div style={{ marginTop: '20px', maxWidth: '600px' }}>
+                <TransactionsListWidget transactions={transactions} />
+            </div>
 
             {permission === 'default' && (
                 <div>
