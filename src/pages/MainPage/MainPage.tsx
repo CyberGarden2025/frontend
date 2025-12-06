@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFirebaseNotifications } from '@shared/hooks';
 import { ExpenseFilters } from '@entities/expense';
 import { Button } from '@shared/ui';
@@ -7,57 +7,22 @@ import type { Transaction } from '@widgets';
 import { KanbanIcon } from '@shared/ui/icons';
 
 export const MainPage = () => {
-    const { token, permission, requestPermission } = useFirebaseNotifications();
-    const [copied, setCopied] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+    const userId = Number(import.meta.env.VITE_DEFAULT_USER_ID);
+    const resolvedUserId = Number.isNaN(userId) ? undefined : userId;
 
-    const transactions: Transaction[] = [
-        {
-            id: '1',
-            operationLabel: 'Перевод между счетами',
-            value: 2000,
-            category: 'Переводы',
-            date: new Date(),
-            icon: <KanbanIcon />,
-            onClick: () => console.log('Transaction 1 clicked'),
-        },
-        {
-            id: '2',
-            operationLabel: 'Покупка продуктов',
-            value: 2500,
-            category: 'Продукты',
-            date: new Date(),
-            icon: <KanbanIcon />,
-            onClick: () => console.log('Transaction 2 clicked'),
-        },
-        {
-            id: '3',
-            operationLabel: 'Оплата интернета',
-            value: 500,
-            category: 'Коммунальные',
-            date: new Date(),
-            icon: <KanbanIcon />,
-            onClick: () => console.log('Transaction 3 clicked'),
-        },
-        {
-            id: '4',
-            operationLabel: 'Зарплата',
-            value: 50000,
-            category: 'Доходы',
-            date: new Date(Date.now() - 86400000),
-            icon: <KanbanIcon />,
-            onClick: () => console.log('Transaction 4 clicked'),
-        },
-        {
-            id: '5',
-            operationLabel: 'Покупка одежды',
-            value: 3500,
-            category: 'Одежда',
-            date: new Date(Date.now() - 86400000),
-            icon: <KanbanIcon />,
-            onClick: () => console.log('Transaction 5 clicked'),
-        },
-    ];
+    const { token, permission, requestPermission, lastNotification } = useFirebaseNotifications({
+        userId: resolvedUserId,
+    });
+    const [copied, setCopied] = useState(false);
+
+    const [isOpen, setIsOpen] = useState(false)
+    
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            requestPermission();
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
 
     const copyToken = async () => {
         if (token) {
@@ -120,6 +85,33 @@ export const MainPage = () => {
                 <div>
                     <p>Notifications are blocked by browser</p>
                     <p>Please enable notifications in your browser settings for this site</p>
+                </div>
+            )}
+            {lastNotification && (
+                <div
+                    style={{
+                        marginTop: '20px',
+                        padding: '12px',
+                        border: '1px solid #e0e0e0',
+                        borderRadius: '8px',
+                        background: '#fdfdfd',
+                    }}
+                >
+                    <p style={{ margin: 0, fontWeight: 600 }}>Last notification (in-app)</p>
+                    <p style={{ margin: '4px 0' }}>{lastNotification.title}</p>
+                    {lastNotification.body && <p style={{ margin: '4px 0' }}>{lastNotification.body}</p>}
+                    {lastNotification.data && (
+                        <div style={{ fontSize: '13px', color: '#444' }}>
+                            <p style={{ margin: '4px 0' }}>Data:</p>
+                            <ul style={{ margin: 0, paddingLeft: '16px' }}>
+                                {Object.entries(lastNotification.data).map(([key, value]) => (
+                                    <li key={key}>
+                                        {key}: {String(value)}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
             )}
         </div>
