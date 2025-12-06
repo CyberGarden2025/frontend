@@ -4,5 +4,6 @@ export * from './OperationsPage';
 export * from './ScanReceiptPage';
 export * from './ChatPage';
 export * from './FinancialForecastPage';
+export * from './DetailedTransactionPage';
 
 

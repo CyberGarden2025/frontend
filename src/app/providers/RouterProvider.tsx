@@ -6,6 +6,7 @@ import { ChatPage } from '@pages/ChatPage';
 import { FinancialForecastPage } from '@pages/FinancialForecastPage';
 import type { FC } from 'react';
 import { createBrowserRouter, RouterProvider as ReactRouter } from 'react-router-dom';
+import { DetailedTransactionPage } from '@pages';
 
 
 const router = createBrowserRouter([
@@ -23,7 +24,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/operations',
-                element: <OperationsPage/>
+                children: [
+                    {
+                        element: <OperationsPage/>,
+                        index: true
+                    },
+                    {
+                        path: ":id",
+                        element: <DetailedTransactionPage/>
+                    }
+                ]
             },
             {
                 path: '/scan-receipt',

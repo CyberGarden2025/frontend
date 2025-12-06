@@ -51,7 +51,7 @@ const getOperationLabel = (category: string): string => {
 export const OperationsPage: FC = () => {
     const navigate = useNavigate();
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false)
-    const { data: backendTransactions, isLoading, error } = useGetTransactionsQuery(1);
+    const { data: backendTransactions, isLoading, error } = useGetTransactionsQuery(null);
     
     const { data: totalData } = useGetTransactionsTotalQuery({
         userId: 1,
@@ -65,8 +65,8 @@ export const OperationsPage: FC = () => {
         }
 
         return backendTransactions.flatMap((dayGroup) =>
-            dayGroup.transaction.map((transaction, index) => ({
-                id: `${dayGroup.date}-${index}`,
+            dayGroup.transaction.map((transaction) => ({
+                id: transaction.id,
                 operationLabel: getOperationLabel(transaction.category),
                 value: transaction.sum,
                 category: getCategoryLabel(transaction.category),

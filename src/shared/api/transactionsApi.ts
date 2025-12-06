@@ -1,6 +1,7 @@
 import mainApi from './mainApi';
 
 export interface BackendTransaction {
+    id: number;
     category: string;
     sum: number;
 }
@@ -24,9 +25,9 @@ export interface TransactionsTotalResponse {
 
 export const transactionsApi = mainApi.injectEndpoints({
     endpoints: (builder) => ({
-        getTransactions: builder.query<BackendTransactionDay[], number>({
-            query: (userId) => ({
-                url: `http://localhost:3000/api/transactions/${userId}`,
+        getTransactions: builder.query<BackendTransactionDay[], null>({
+            query: () => ({
+                url: `http://localhost:3000/api/transactions`,
                 method: 'GET',
             }),
         }),
