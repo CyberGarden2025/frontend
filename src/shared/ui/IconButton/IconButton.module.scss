@@ -1,0 +1,126 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    position: relative;
+    padding: 0 13px 0 0;
+}
+
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: -13px;
+}
+
+.rootLarge {
+    padding: 18px;
+}
+
+.rootMedium {
+    padding: 14px;
+}
+
+.rootPrimary {
+    background-color: rgba(243, 247, 244, 0.8);
+}
+
+.rootPrimaryDefault {
+    cursor: pointer;
+}
+
+.rootPrimaryActive {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
+.rootPrimaryActive.rootLarge {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
+.rootPrimaryActive.rootMedium {
+    background-color: #e9eeea;
+    border: 1px solid var(--border-muted, rgba(153, 153, 153, 0.15));
+}
+
+.rootSecondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border-default, rgba(153, 153, 153, 0.5));
+}
+
+.rootSecondaryDefault.rootMedium {
+    background-color: transparent;
+    border: 1px solid var(--border-default, rgba(153, 153, 153, 0.5));
+}
+
+.rootSecondaryDefault {
+    cursor: pointer;
+}
+
+.rootSecondaryActive {
+    background-color: var(--bg-surface4, #f5f5f5);
+    border: 1px solid var(--border-default, rgba(153, 153, 153, 0.5));
+}
+
+.rootDisabled {
+    background-color: var(--button-primary-accent-bg-color-disabled, rgba(153, 153, 153, 0.1));
+    cursor: not-allowed;
+}
+
+.root:disabled {
+    cursor: not-allowed;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rootLarge .iconContainer {
+    width: 20px;
+    height: 20px;
+}
+
+.rootMedium .iconContainer {
+    width: 16px;
+    height: 16px;
+}
+
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    width: 15px;
+    height: 15px;
+    padding: 1px 4px 2px 4.5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 100px;
+    background: var(--badge-primary-error-bg-color, #cd5d58);
+    margin-right: -13px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.badgeValue {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: normal;
+    font-style: normal;
+    color: white;
+    flex-shrink: 0;
+}
+

@@ -1,0 +1,26 @@
+<svg width="41" height="128" viewBox="0 0 41 128" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<mask id="path-1-inside-1_74_1236" fill="white">
+<path d="M0 14C0 6.26801 6.26801 0 14 0H26.8571C34.5891 0 40.8571 6.26801 40.8571 14V114C40.8571 121.732 34.5891 128 26.8571 128H14C6.26801 128 0 121.732 0 114V14Z"/>
+</mask>
+<path d="M0 14C0 6.26801 6.26801 0 14 0H26.8571C34.5891 0 40.8571 6.26801 40.8571 14V114C40.8571 121.732 34.5891 128 26.8571 128H14C6.26801 128 0 121.732 0 114V14Z" fill="url(#pattern0_74_1236)"/>
+<path d="M0 14C0 5.43959 6.93959 -1.5 15.5 -1.5H25.3571C33.9176 -1.5 40.8571 5.43959 40.8571 14C40.8571 7.09644 34.5891 1.5 26.8571 1.5H14C6.26801 1.5 0 7.09644 0 14ZM40.8571 128H0H40.8571ZM0 128V0V128ZM40.8571 0V128V0Z" fill="#73C66D" mask="url(#path-1-inside-1_74_1236)"/>
+<defs>
+<pattern id="pattern0_74_1236" patternUnits="userSpaceOnUse" patternTransform="matrix(42 0 0 277.556 -0.57143 -74.7778)" preserveAspectRatio="none" viewBox="0 0 42 277.556" width="1" height="1">
+<g id="pattern0_74_1236_inner">
+<g id="Repeat group 2_inner" data-figma-trr="l12p20-0f">
+<path d="M0 47.4444L42 0V10.1111L0 57.5556V47.4444Z" fill="#50B848" fill-opacity="0.2"/>
+</g>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 20)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 40)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 60)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 80)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 100)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 120)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 140)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 160)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 180)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 200)"/>
+<use xlink:href="#Repeat%20group%202_inner" transform="translate(0 220)"/>
+</g>
+</pattern></defs>
+</svg>

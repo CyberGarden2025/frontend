@@ -1,0 +1,18 @@
+.root {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.loading {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    text-align: center;
+    padding: 24px;
+}
+
