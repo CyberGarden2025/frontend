@@ -9,6 +9,8 @@ import {
     ChatIcon,
     KanbanIcon,
     GraphIcon,
+    RefreshIcon,
+    ArrowBackIcon,
 } from '@shared/ui/icons';
 import {
     TotalFundsWidget,
@@ -17,6 +19,8 @@ import {
     CategoriesWidget,
 } from '@widgets';
 import type { Category } from '@shared/ui';
+import maleMemojisSvg from '@shared/assets/Male Memojis.svg';
+import imageSvg from '@shared/assets/Image (1).svg';
 import styles from './MainPage.module.scss';
 
 export const MainPage: FC = () => {
@@ -49,12 +53,13 @@ export const MainPage: FC = () => {
 
     return (
         <div className={styles.root}>
+            <img src={imageSvg} alt="Background decoration" className={styles.backgroundImage} />
             <div className={styles.container}>
                 <div className={styles.header}>
                     <div className={styles.headerTop}>
                         <div className={styles.headerTopRight}>
                             <IconButton
-                                icon={<MoreIcon />}
+                                icon={<RefreshIcon />}
                                 variant="primary"
                                 state="default"
                                 size="large"
@@ -65,7 +70,11 @@ export const MainPage: FC = () => {
                         </div>
                         <div className={styles.headerAvatar}>
                             <div className={styles.avatar}>
-                                <div className={styles.avatarImage}></div>
+                                <img
+                                    src={maleMemojisSvg}
+                                    alt="Avatar"
+                                    className={styles.avatarImage}
+                                />
                             </div>
                         </div>
                     </div>
@@ -143,12 +152,12 @@ export const MainPage: FC = () => {
                                 badge: false,
                             },
                             {
-                                icon: <MoreIcon />,
+                                icon: <ChatIcon />,
                                 badge: true,
                                 badgeValue: '3',
                             },
                             {
-                                icon: <MoreIcon />,
+                                icon: <div style={{transform: "rotate(135deg)"}}><ArrowBackIcon /></div>,
                                 badge: false,
                             },
                         ]}
@@ -165,12 +174,12 @@ export const MainPage: FC = () => {
                                 badge: false,
                             },
                             {
-                                icon: <MoreIcon />,
+                                icon: <ChatIcon />,
                                 badge: true,
                                 badgeValue: '1',
                             },
                             {
-                                icon: <MoreIcon />,
+                                icon: <div style={{transform: "rotate(135deg)"}}><ArrowBackIcon /></div>,
                                 badge: false,
                             },
                         ]}

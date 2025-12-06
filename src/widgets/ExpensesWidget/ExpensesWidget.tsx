@@ -1,12 +1,13 @@
 import clsx from 'clsx';
-import { type FC, type ReactNode } from 'react';
+import { type FC, type ReactNode, useEffect } from 'react';
 import { Chart, IconButton } from '@shared/ui';
+import { useGetExpensesChartMutation } from '@shared/api';
 import styles from './ExpensesWidget.module.scss';
 
 export interface ExpensesWidgetProps {
-    monthlyAmount: number;
-    monthLabel: string;
-    chartValues: [number, number, number, number, number, number, number];
+    monthlyAmount?: number;
+    monthLabel?: string;
+    chartValues?: [number, number, number, number, number, number, number];
     leftIcon?: ReactNode;
     rightIcons?: Array<{
         icon: ReactNode;
@@ -19,14 +20,23 @@ export interface ExpensesWidgetProps {
 }
 
 export const ExpensesWidget: FC<ExpensesWidgetProps> = ({
-    monthlyAmount,
-    monthLabel,
-    chartValues,
+    monthlyAmount: propMonthlyAmount,
+    monthLabel: propMonthLabel,
+    chartValues: propChartValues,
     leftIcon,
     rightIcons,
     className,
     style,
 }) => {
+    const [getExpensesChart, { data: expensesData, isLoading }] = useGetExpensesChartMutation();
+
+    useEffect(() => {
+        getExpensesChart({
+            userId: 1,
+            startDate: '01/12/2023',
+        });
+    }, [getExpensesChart]);
+
     const formatAmount = (amount: number): { thousands: string; hundreds: string } => {
         const amountStr = amount.toString();
         if (amountStr.length <= 3) {
@@ -39,6 +49,24 @@ export const ExpensesWidget: FC<ExpensesWidgetProps> = ({
         const hundreds = amountStr.slice(-3);
         return { thousands, hundreds };
     };
+
+    const monthlyAmount = expensesData?.currentMonthExpenses ?? propMonthlyAmount ?? 0;
+    const monthLabel = expensesData?.months?.[0] 
+        ? `за ${expensesData.months[0].monthFull.toLowerCase()}` 
+        : propMonthLabel ?? '';
+    
+    const getChartValues = (): [number, number, number, number, number, number, number] => {
+        if (expensesData?.months) {
+            const amounts = expensesData.months.slice(0, 7).map(m => m.amount);
+            while (amounts.length < 7) {
+                amounts.push(0);
+            }
+            return amounts as [number, number, number, number, number, number, number];
+        }
+        return propChartValues ?? [0, 0, 0, 0, 0, 0, 0];
+    };
+    
+    const chartValues = getChartValues();
 
     const { thousands, hundreds } = formatAmount(monthlyAmount);
 

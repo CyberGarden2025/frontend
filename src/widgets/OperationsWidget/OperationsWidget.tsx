@@ -1,14 +1,15 @@
 import clsx from 'clsx';
-import { type FC, type ReactNode } from 'react';
+import { type FC, type ReactNode, useEffect } from 'react';
 import { IconButton, Button } from '@shared/ui';
+import { useGetMonthSummaryMutation } from '@shared/api';
 import styles from './OperationsWidget.module.scss';
 
 export interface OperationsWidgetProps {
     title: string;
     leftIcon?: ReactNode;
     periodButtonLabel?: string;
-    income: number;
-    expenses: number;
+    income?: number;
+    expenses?: number;
     incomeBarHeight?: number;
     expensesBarHeight?: number;
     className?: string;
@@ -19,16 +20,28 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
     title,
     leftIcon,
     periodButtonLabel = 'Месяц',
-    income,
-    expenses,
+    income: propIncome,
+    expenses: propExpenses,
     incomeBarHeight = 36,
     expensesBarHeight = 36,
     className,
     style,
 }) => {
+    const [getMonthSummary, { data: monthSummaryData }] = useGetMonthSummaryMutation();
+
+    useEffect(() => {
+        getMonthSummary({
+            userId: 1,
+            monthDate: '01/12/2023',
+        });
+    }, [getMonthSummary]);
+
     const formatAmount = (amount: number): string => {
         return amount.toLocaleString('ru-RU');
     };
+
+    const income = monthSummaryData?.income ?? propIncome ?? 0;
+    const expenses = monthSummaryData?.expenses ?? propExpenses ?? 0;
 
     const incomeFormatted = formatAmount(income);
     const expensesFormatted = formatAmount(expenses);
