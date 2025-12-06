@@ -1,0 +1,66 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    & input[type="number"],
+    & .numberInput {
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        -moz-appearance: textfield;
+        appearance: textfield;
+        max-width: 100%;
+        padding: 10px 24px;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        font-family: 'TeX Gyre Adventor', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        }
+
+    & .inputWrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 100px;
+        padding: 8px 16px 8px 8px;
+        box-shadow: 
+            inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+            inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+
+        & .iconWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(243, 247, 244, 0.9);
+            flex-shrink: 0;
+        }
+
+        & .dateInput {
+            max-width: 80px;
+            border: none;
+            background: transparent;
+            font-family: 'TeX Gyre Adventor', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--fg-default, #1f1f1f);
+            outline: none;
+            padding: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0; 
+
+            &::placeholder {
+                color: var(--fg-soft, #999999);
+            }
+        }
+    }
+}

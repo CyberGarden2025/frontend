@@ -75,13 +75,13 @@ export const transactionsApi = mainApi.injectEndpoints({
     endpoints: (builder) => ({
         getTransactions: builder.query<BackendTransactionDay[], number>({
             query: (userId) => ({
-                url: `http://localhost:3000/transactions/${userId}`,
+                url: `http://localhost:3000/api/transactions/${userId}`,
                 method: 'GET',
             }),
         }),
         getTransactionsTotal: builder.query<TransactionsTotalResponse, TransactionsTotalParams>({
             query: ({ userId, start, end }) => ({
-                url: `http://localhost:3000/transactions/${userId}/total`,
+                url: `http://localhost:3000/api/transactions/${userId}/total`,
                 method: 'GET',
                 params: { start, end },
             }),

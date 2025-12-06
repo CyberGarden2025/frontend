@@ -63,10 +63,23 @@
 
 .filtersLeft {
     display: flex;
+    flex-direction: row;
     gap: 12px;
     align-items: center;
-    flex: 1 0 0;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     min-width: 0;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    > * {
+        flex-shrink: 0;
+    }
 }
 
 .widgetsContainer {
