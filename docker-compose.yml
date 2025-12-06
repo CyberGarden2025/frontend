@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: seep-frontend:latest
+    ports:
+      - "4200:8080"
+    restart: unless-stopped
