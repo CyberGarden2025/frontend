@@ -22,6 +22,10 @@ export const FinancialSummaryPage: FC = () => {
     const navigate = useNavigate();
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
+    const handleChatClick = () => {
+        navigate('/chat');
+    };
+
     const pieChartCategories: Category[] = [
         {
             name: 'Продукты',
@@ -119,7 +123,7 @@ export const FinancialSummaryPage: FC = () => {
                         leftIcon={<KanbanIcon />}
                         rightIcons={[
                             { icon: <FilterIcon />, onClick: () => setIsFiltersOpen(true) },
-                            { icon: <ChatIcon />, badge: true, badgeValue: '3' },
+                            { icon: <ChatIcon />, badge: true, badgeValue: '3', onClick: handleChatClick },
                             { icon: <ExpandIcon /> },
                         ]}
                     />
@@ -131,7 +135,7 @@ export const FinancialSummaryPage: FC = () => {
                         leftIcon={<RefreshIcon />}
                         rightIcons={[
                             { icon: <FilterIcon />, onClick: () => setIsFiltersOpen(true) },
-                            { icon: <ChatIcon />, badge: true, badgeValue: '1' },
+                            { icon: <ChatIcon />, badge: true, badgeValue: '1', onClick: handleChatClick },
                             { icon: <ExpandIcon /> },
                         ]}
                     />

@@ -4,10 +4,30 @@ import type { Category } from './PieChart';
 const getCategoryColor = (name: string): string => {
     const colorMap: Record<string, string> = {
         'Продукты': '#50B848',
+        'Еда': '#50B848',
+        'Food': '#50B848',
         'Ипотека': '#e6e6e6',
+        'Rent': '#e6e6e6',
+        'Аренда': '#e6e6e6',
         'Автотовары': '#cac3f5',
         'Детские товары': '#dfef8a',
         'Подписки и сервисы': '#81d2d4',
+        'Разное': '#ffa500',
+        'Misc': '#ffa500',
+        'Транспорт': '#4a90e2',
+        'Transport': '#4a90e2',
+        'Покупки': '#ff6b9d',
+        'Shopping': '#ff6b9d',
+        'Зарплата': '#9b59b6',
+        'Salary': '#9b59b6',
+        'Пополнение': '#2ecc71',
+        'deposit': '#2ecc71',
+        'Снятие': '#e74c3c',
+        'withdrawal': '#e74c3c',
+        'Перевод': '#3498db',
+        'transfer': '#3498db',
+        'Платеж': '#f39c12',
+        'payment': '#f39c12',
     };
     return colorMap[name] || '#cccccc';
 };

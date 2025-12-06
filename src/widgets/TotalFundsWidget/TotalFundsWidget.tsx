@@ -1,7 +1,8 @@
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { IconButton } from '@shared/ui';
-import { MoreIcon, SettingsIcon } from '@shared/ui/icons';
+import { MoreIcon, SettingsIcon, WalletIcon, ChatIcon, ExpandIcon, ArrowBackIcon } from '@shared/ui/icons';
 import styles from './TotalFundsWidget.module.scss';
 
 export interface TotalFundsWidgetProps {
@@ -21,6 +22,8 @@ export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
     className,
     style,
 }) => {
+    const navigate = useNavigate();
+
     const formatAmount = (amount: number): string => {
         return new Intl.NumberFormat('ru-RU').format(amount);
     };
@@ -35,7 +38,7 @@ export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
                 <div className={styles.headerLeft}>
                     <div className={styles.iconButtonWrapper}>
                         <IconButton
-                            icon={<SettingsIcon />}
+                            icon={<WalletIcon />}
                             variant="secondary"
                             state="default"
                             size="medium"
@@ -46,20 +49,22 @@ export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
                 <div className={styles.headerRight}>
                     <div className={styles.iconButtonWithBadge}>
                         <IconButton
-                            icon={<MoreIcon />}
+                            icon={<ChatIcon />}
                             variant="primary"
                             state="default"
                             size="medium"
                             badge={notificationCount > 0}
                             badgeValue={String(notificationCount)}
+                            onClick={() => navigate('/chat')}
                         />
                     </div>
                     <div className={styles.iconButtonWrapper}>
                         <IconButton
-                            icon={<MoreIcon />}
+                            icon={<div style={{transform: "rotate(135deg)"}}><ArrowBackIcon /></div>}
                             variant="primary"
                             state="default"
                             size="medium"
+                            onClick={() => navigate('/operations')}
                         />
                     </div>
                 </div>

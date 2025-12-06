@@ -1,4 +1,5 @@
 import { type FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Button } from '@shared/ui';
 import { ChatIcon } from '@shared/ui/icons';
@@ -25,6 +26,8 @@ export const BudgetStabilityWidget: FC<BudgetStabilityWidgetProps> = ({
     className,
     style,
 }) => {
+    const navigate = useNavigate();
+
     const formatAmount = (amount: number): string => {
         return new Intl.NumberFormat('ru-RU').format(amount);
     };
@@ -93,19 +96,24 @@ export const BudgetStabilityWidget: FC<BudgetStabilityWidgetProps> = ({
                 </div>
             </div>
 
-            {onAskAssistant && (
-                <div className={styles.footer}>
-                    <Button
-                        label="Спросить ассистента"
-                        variant="primary"
-                        state="default"
-                        size="medium"
-                        icon={<ChatIcon />}
-                        showIcon={true}
-                        onClick={() => onAskAssistant('Расскажи подробнее об устойчивости моего бюджета')}
-                    />
-                </div>
-            )}
+            <div className={styles.footer}>
+                <Button
+                    label="Спросить ассистента"
+                    variant="primary"
+                    state="default"
+                    size="medium"
+                    icon={<ChatIcon />}
+                    showIcon={true}
+                    onClick={() => {
+                        const message = 'Расскажи подробнее об устойчивости моего бюджета';
+                        if (onAskAssistant) {
+                            onAskAssistant(message);
+                        } else {
+                            navigate('/chat', { state: { message } });
+                        }
+                    }}
+                />
+            </div>
         </div>
     );
 };
