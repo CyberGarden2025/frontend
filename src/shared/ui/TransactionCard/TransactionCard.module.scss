@@ -1,0 +1,83 @@
+.root {
+    background-color: var(--bg-surface4, #f5f5f5);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 18px 16px 12px;
+    border-radius: 28px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.root:hover {
+    opacity: 0.9;
+}
+
+.iconButtonContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-right: 13px;
+    flex-shrink: 0;
+}
+
+.content {
+    display: flex;
+    flex: 1 0 0;
+    align-items: flex-end;
+    min-width: 0;
+}
+
+.textContainer {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+.category {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
+    color: var(--grey, #9b9b9b);
+    margin: 0;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+.operationLabel {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    margin: 0;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+.amountContainer {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-shrink: 0;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+}
+
+.value {
+    color: var(--black1, #232323);
+    margin: 0;
+}
+
+.currency {
+    color: var(--black1, #232323);
+    margin: 0;
+}
+

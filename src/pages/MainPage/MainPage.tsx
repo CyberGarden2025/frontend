@@ -2,11 +2,62 @@ import { useState } from 'react';
 import { useFirebaseNotifications } from '@shared/hooks';
 import { ExpenseFilters } from '@entities/expense';
 import { Button } from '@shared/ui';
+import { TransactionsListWidget } from '@widgets';
+import type { Transaction } from '@widgets';
+import { KanbanIcon } from '@shared/ui/icons';
 
 export const MainPage = () => {
     const { token, permission, requestPermission } = useFirebaseNotifications();
     const [copied, setCopied] = useState(false);
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+
+    const transactions: Transaction[] = [
+        {
+            id: '1',
+            operationLabel: 'Перевод между счетами',
+            value: 2000,
+            category: 'Переводы',
+            date: new Date(),
+            icon: <KanbanIcon />,
+            onClick: () => console.log('Transaction 1 clicked'),
+        },
+        {
+            id: '2',
+            operationLabel: 'Покупка продуктов',
+            value: 2500,
+            category: 'Продукты',
+            date: new Date(),
+            icon: <KanbanIcon />,
+            onClick: () => console.log('Transaction 2 clicked'),
+        },
+        {
+            id: '3',
+            operationLabel: 'Оплата интернета',
+            value: 500,
+            category: 'Коммунальные',
+            date: new Date(),
+            icon: <KanbanIcon />,
+            onClick: () => console.log('Transaction 3 clicked'),
+        },
+        {
+            id: '4',
+            operationLabel: 'Зарплата',
+            value: 50000,
+            category: 'Доходы',
+            date: new Date(Date.now() - 86400000),
+            icon: <KanbanIcon />,
+            onClick: () => console.log('Transaction 4 clicked'),
+        },
+        {
+            id: '5',
+            operationLabel: 'Покупка одежды',
+            value: 3500,
+            category: 'Одежда',
+            date: new Date(Date.now() - 86400000),
+            icon: <KanbanIcon />,
+            onClick: () => console.log('Transaction 5 clicked'),
+        },
+    ];
 
     const copyToken = async () => {
         if (token) {
@@ -21,6 +72,10 @@ export const MainPage = () => {
             <h1>Main Page</h1>
             <Button onClick={() => setIsOpen(!isOpen)} label={'123'}/>
             <ExpenseFilters isOpen={isOpen} setIsOpen={setIsOpen}/>
+
+            <div style={{ marginTop: '20px', maxWidth: '600px' }}>
+                <TransactionsListWidget transactions={transactions} />
+            </div>
 
             {permission === 'default' && (
                 <div>

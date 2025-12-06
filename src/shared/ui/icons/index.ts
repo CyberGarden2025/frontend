@@ -9,4 +9,5 @@ export * from './RefreshIcon';
 export * from './ArrowBackIcon';
 export * from './SearchIcon';
 export * from './SettingsIcon';
+export * from './WalletIcon';
 
