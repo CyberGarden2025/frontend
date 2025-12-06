@@ -49,7 +49,6 @@ export const PieChart: FC<PieChartProps> = ({
                                             patternUnits="userSpaceOnUse"
                                             width="14"
                                             height="8"
-                                            patternTransform="rotate(35)"
                                         >
                                             <rect width="8" height="14" fill="#d9d9d9" />
                                             <rect width="8" height="8" x="4" fill="#ffffff" />

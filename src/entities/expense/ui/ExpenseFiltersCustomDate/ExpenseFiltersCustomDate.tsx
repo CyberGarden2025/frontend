@@ -11,24 +11,16 @@ export const ExpenseFiltersCustomDate: FC<ExpenseFiltersCustomDateProps> = ({isO
     const [endDate, setEndDate] = useState<string>("12.03.2025");
 
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                isOpen &&
-                modalRef.current &&
-                !modalRef.current.contains(event.target as Node)
-            ) {
-                setIsOpen(false);
-            }
-        };
-
         if (isOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
         }
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.body.style.overflow = '';
         };
-    }, [isOpen, setIsOpen]);
+    }, [isOpen]);
 
     const handleContainerClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === wrapperRef.current) {

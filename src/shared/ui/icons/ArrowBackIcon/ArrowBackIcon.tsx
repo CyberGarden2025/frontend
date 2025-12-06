@@ -1,13 +1,13 @@
 import { type FC } from 'react';
 import clsx from 'clsx';
-import styles from './ExpandIcon.module.scss';
+import styles from './ArrowBackIcon.module.scss';
 
-export interface ExpandIconProps {
+export interface ArrowBackIconProps {
     className?: string;
     style?: React.CSSProperties;
 }
 
-export const ExpandIcon: FC<ExpandIconProps> = ({ className, style }) => {
+export const ArrowBackIcon: FC<ArrowBackIconProps> = ({ className, style }) => {
     return (
         <svg
             width="20"
@@ -19,12 +19,12 @@ export const ExpandIcon: FC<ExpandIconProps> = ({ className, style }) => {
             style={style}
         >
             <path
-                d="M16.6668 9.99935H3.3335"
+                d="M17.5 9.99935L2.5 9.99935"
                 stroke="currentColor"
                 strokeLinecap="round"
             />
             <path
-                d="M9.99984 3.33398V16.6673"
+                d="M7.5 5L2.5 10L7.5 15"
                 stroke="currentColor"
                 strokeLinecap="round"
             />

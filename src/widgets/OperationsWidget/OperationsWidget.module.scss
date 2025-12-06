@@ -1,0 +1,140 @@
+.root {
+    backdrop-filter: blur(5px);
+    background-color: rgba(230, 230, 230, 0.1);
+    border: 1px solid var(--border-soft, rgba(153, 153, 153, 0.25));
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.headerLeft {
+    display: flex;
+    flex: 1 0 0;
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+}
+
+.leftIconContainer {
+    flex-shrink: 0;
+}
+
+.title {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    color: var(--fg-default, #1f1f1f);
+    flex: 1 0 0;
+    min-width: 0;
+    margin: 0;
+    padding: 2px 0 0 0;
+    white-space: pre-wrap;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.sectionsRow {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.incomeSection,
+.expensesSection {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+    flex: 1 0 0;
+    min-width: 0;
+}
+
+.label {
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: normal;
+    color: var(--fg-soft, #999999);
+}
+
+.amount {
+    display: flex;
+    gap: 4px;
+    align-items: flex-start;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+}
+
+.amountValue {
+    color: var(--fg-default, #1f1f1f);
+}
+
+.currency {
+    color: var(--fg-soft, #999999);
+}
+
+.barContainer {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    position: relative;
+    // gap: 16px;
+}
+
+.divider {
+    width: 1px;
+    height: 44px;
+    background-color: var(--fg-soft, #999999);
+    flex-shrink: 0;
+}
+
+.barsWrapper {
+    display: flex;
+    // gap: 16px;
+    align-items: flex-end;
+    flex: 1 0 0;
+    min-width: 0;
+}
+
+.bar {
+    min-width: 0;
+    border-radius: 12px;
+}
+
+.barIncome {
+    background-color: var(--brand-default, #50b848);
+}
+
+.barExpenses {
+    background-color: rgba(80, 184, 72, 0.2);
+    background-image: repeating-linear-gradient(
+        120deg,
+        #d9d9d9,
+        #d9d9d9 4px,
+        #ffffff 4px,
+        #ffffff 8px
+    );
+    background-size: 9px 16px;
+}
+

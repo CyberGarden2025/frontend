@@ -1,13 +1,13 @@
 import { type FC } from 'react';
 import clsx from 'clsx';
-import styles from './CalendarIcon.module.scss';
+import styles from './SettingsIcon.module.scss';
 
-export interface CalendarIconProps {
+export interface SettingsIconProps {
     className?: string;
     style?: React.CSSProperties;
 }
 
-export const CalendarIcon: FC<CalendarIconProps> = ({ className, style }) => {
+export const SettingsIcon: FC<SettingsIconProps> = ({ className, style }) => {
     return (
         <svg
             width="20"
@@ -19,51 +19,44 @@ export const CalendarIcon: FC<CalendarIconProps> = ({ className, style }) => {
             style={style}
         >
             <path
-                d="M6.6665 1.66602V4.16602"
+                d="M18.3335 5.41602H13.3335"
                 stroke="currentColor"
                 strokeMiterlimit="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M13.3335 1.66602V4.16602"
+                d="M4.99984 5.41602H1.6665"
                 stroke="currentColor"
                 strokeMiterlimit="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M2.9165 7.57422H17.0832"
+                d="M8.33317 8.33333C9.944 8.33333 11.2498 7.0275 11.2498 5.41667C11.2498 3.80584 9.944 2.5 8.33317 2.5C6.72234 2.5 5.4165 3.80584 5.4165 5.41667C5.4165 7.0275 6.72234 8.33333 8.33317 8.33333Z"
                 stroke="currentColor"
                 strokeMiterlimit="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M17.5 7.08268V14.166C17.5 16.666 16.25 18.3327 13.3333 18.3327H6.66667C3.75 18.3327 2.5 16.666 2.5 14.166V7.08268C2.5 4.58268 3.75 2.91602 6.66667 2.91602H13.3333C16.25 2.91602 17.5 4.58268 17.5 7.08268Z"
+                d="M18.3333 14.584H15"
                 stroke="currentColor"
                 strokeMiterlimit="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M9.99607 11.4167H10.0036"
+                d="M6.6665 14.584H1.6665"
                 stroke="currentColor"
-                strokeWidth="1.2"
+                strokeMiterlimit="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M6.91209 11.4167H6.91957"
+                d="M11.6667 17.4993C13.2775 17.4993 14.5833 16.1935 14.5833 14.5827C14.5833 12.9719 13.2775 11.666 11.6667 11.666C10.0558 11.666 8.75 12.9719 8.75 14.5827C8.75 16.1935 10.0558 17.4993 11.6667 17.4993Z"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-            <path
-                d="M6.91209 13.9167H6.91957"
-                stroke="currentColor"
-                strokeWidth="1.2"
+                strokeMiterlimit="10"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
