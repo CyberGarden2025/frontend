@@ -8,7 +8,17 @@ import type { FC } from 'react';
 import { createBrowserRouter, RouterProvider as ReactRouter, redirect } from 'react-router-dom';
 import { CategoryPage, DetailedTransactionPage, NewLimitPage } from '@pages';
 
-const router = createBrowserRouter([
+const routerFutureFlags = {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true,
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_skipActionErrorRevalidation: true,
+} as any;
+
+const router = createBrowserRouter(
+    [
     {
         path: '/',
         children: [
@@ -72,5 +82,5 @@ const router = createBrowserRouter([
 ]);
 
 export const RouterProvider: FC = () => {
-    return <ReactRouter router={router} />;
+    return <ReactRouter router={router} future={routerFutureFlags} />;
 };

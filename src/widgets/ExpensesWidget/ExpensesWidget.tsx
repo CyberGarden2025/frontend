@@ -3,6 +3,7 @@ import { type FC, type ReactNode, useEffect } from 'react';
 import { Chart, IconButton } from '@shared/ui';
 import { useGetExpensesChartMutation } from '@shared/api';
 import styles from './ExpensesWidget.module.scss';
+import { useKeycloak } from '@react-keycloak/web';
 
 export interface ExpensesWidgetProps {
     monthlyAmount?: number;
@@ -29,13 +30,15 @@ export const ExpensesWidget: FC<ExpensesWidgetProps> = ({
     style,
 }) => {
     const [getExpensesChart, { data: expensesData, isLoading }] = useGetExpensesChartMutation();
+    const { keycloak } = useKeycloak();
+    const isAuthed = keycloak?.authenticated;
 
     useEffect(() => {
+        if (!isAuthed) return;
         getExpensesChart({
-            userId: 1,
             startDate: '01/12/2023',
         });
-    }, [getExpensesChart]);
+    }, [getExpensesChart, isAuthed]);
 
     const formatAmount = (amount: number): { thousands: string; hundreds: string } => {
         const amountStr = amount.toString();
@@ -119,4 +122,3 @@ export const ExpensesWidget: FC<ExpensesWidgetProps> = ({
         </div>
     );
 };
-
