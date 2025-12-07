@@ -35,7 +35,7 @@
     border-radius: 24px;
     max-width: 80%;
     word-wrap: break-word;
-    white-space: pre-wrap;
+    white-space: normal;
 }
 
 .userMessage .content {
@@ -58,3 +58,53 @@
     padding: 0 4px;
 }
 
+.content :global(p) {
+    margin: 0 0 8px;
+}
+
+.content :global(ul),
+.content :global(ol) {
+    margin: 0 0 8px;
+    padding-left: 20px;
+}
+
+.content :global(li + li) {
+    margin-top: 4px;
+}
+
+.content :global(strong) {
+    font-weight: 600;
+}
+
+.content :global(em) {
+    font-style: italic;
+}
+
+.content :global(a) {
+    color: var(--primary, #2b6cb0);
+    text-decoration: underline;
+    word-break: break-word;
+}
+
+.content :global(code) {
+    font-family: 'JetBrains Mono', Menlo, Consolas, monospace;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.content :global(pre) {
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 12px;
+    border-radius: 12px;
+    overflow: auto;
+    margin: 8px 0;
+}
+
+.content :global(blockquote) {
+    margin: 8px 0;
+    padding-left: 12px;
+    border-left: 4px solid rgba(0, 0, 0, 0.08);
+    color: var(--fg-soft, #555555);
+}

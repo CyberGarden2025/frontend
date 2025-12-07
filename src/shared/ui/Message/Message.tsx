@@ -1,4 +1,6 @@
-import { type FC } from 'react';
+import { type FC, useMemo } from 'react';
+import DOMPurify from 'dompurify';
+import { marked } from 'marked';
 import clsx from 'clsx';
 import { MessageButtons } from '@shared/ui/MessageButtons';
 import type { MessageButton } from '@shared/ui/MessageButtons';
@@ -16,6 +18,12 @@ export interface MessageProps {
     style?: React.CSSProperties;
 }
 
+// Configure markdown parser once for the chat bubbles
+marked.setOptions({
+    gfm: true,
+    breaks: true,
+});
+
 export const Message: FC<MessageProps> = ({
     content,
     role,
@@ -27,6 +35,21 @@ export const Message: FC<MessageProps> = ({
 }) => {
     const isUser = role === 'user';
     const showButtons = !isUser && buttons && buttons.length > 0 && onButtonClick;
+    const renderedContent = useMemo(() => {
+        if (!content) return '';
+
+        try {
+            // marked.parse is sync in this setup; cast keeps TS happy
+            const html = marked.parse(content) as string;
+            return DOMPurify.sanitize(html, {
+                ADD_ATTR: ['target', 'rel'],
+            });
+        } catch (error) {
+            console.error('Failed to render message markdown:', error);
+            const fallback = content.replace(/\n/g, '<br>');
+            return DOMPurify.sanitize(fallback);
+        }
+    }, [content]);
 
     return (
         <div
@@ -37,9 +60,10 @@ export const Message: FC<MessageProps> = ({
             )}
             style={style}
         >
-            <div className={styles.content}>
-                {content}
-            </div>
+            <div
+                className={styles.content}
+                dangerouslySetInnerHTML={{ __html: renderedContent }}
+            />
             {showButtons && (
                 <MessageButtons
                     buttons={buttons}
@@ -57,4 +81,3 @@ export const Message: FC<MessageProps> = ({
         </div>
     );
 };
-
