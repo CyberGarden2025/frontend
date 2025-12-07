@@ -1,10 +1,12 @@
 import { IconButton } from "@shared/ui";
 import cls from "./DetailedTransactionPage.module.scss"
 import { ArrowBackIcon } from "@shared/ui/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { formatDateToRu } from "@shared/lib";
 import { ExpenseDetailed } from "@entities/expense";
 import type { Operation } from "@entities/expense/interface/operation.interface";
+import { useLazyGetOperationQuery } from "@entities/expense/api";
+import { useEffect } from "react";
 
 const data: Operation = {
     category: "Food",
@@ -21,16 +23,16 @@ const data: Operation = {
 }
 
 export const DetailedTransactionPage = () => {
-    // const { id } = useParams<{ id: string }>();
-    // const [trigger, { data }] = useLazyGetOperationQuery();
+    const { id } = useParams<{ id: string }>();
+    const [trigger, { data }] = useLazyGetOperationQuery();
     const navigate = useNavigate();
     
 
-    // useEffect(() => {
-    //     if (id) {
-    //         trigger({id: +id});
-    //     }
-    // }, [id, trigger]);
+    useEffect(() => {
+        if (id) {
+            trigger({id: +id});
+        }
+    }, [id, trigger]);
 
 
     return (
