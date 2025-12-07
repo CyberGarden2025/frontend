@@ -7,6 +7,7 @@ import { FinancialForecastPage } from '@pages/FinancialForecastPage';
 import type { FC } from 'react';
 import { createBrowserRouter, RouterProvider as ReactRouter, redirect } from 'react-router-dom';
 import { CategoryPage, DetailedTransactionPage, NewLimitPage, NotificationsPage } from '@pages';
+import { useAutoNotification } from '@shared/lib/hooks/useAutoNotification';
 
 const router = createBrowserRouter([
     {
@@ -75,6 +76,11 @@ const router = createBrowserRouter([
     },
 ]);
 
-export const RouterProvider: FC = () => {
+const RouterProviderInner: FC = () => {
+    useAutoNotification();
     return <ReactRouter router={router} />;
+};
+
+export const RouterProvider: FC = () => {
+    return <RouterProviderInner />;
 };

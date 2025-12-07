@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import cls from "./ExpenseDetailed.module.scss"
 import type { ExpenseDetailedProps } from "./ExpenseDetailed.props";
 import { CardIcon, EditIcon, ReceiptIcon, ScanIcon } from "@shared/ui/icons";
@@ -8,6 +9,12 @@ import { Button } from "@shared/ui";
 
 
 export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({transaction}) => {
+    const navigate = useNavigate();
+
+    const handleScanClick = () => {
+        navigate('/scan-receipt');
+    };
+
     return (
         <div className={cls.wrapper}>
             <div className={cls.card}>
@@ -68,7 +75,7 @@ export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({transaction}) => {
                     <p className={cls.text}>
                     сохраните информацию о покупке
                     </p>
-                    <div className={cls.icon}>
+                    <div className={cls.icon} onClick={handleScanClick} style={{ cursor: 'pointer' }}>
                         <ScanIcon/>
                     </div>
                     <img className={cls.img} src="/scan.webp" alt="" />
