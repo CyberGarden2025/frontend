@@ -15,7 +15,6 @@
             font-size: 14px;
             font-family: 'TeX Gyre Adventor';
             font-weight: 400;
-            line-height: 0;
         }
         
         & .cardIcon {
@@ -33,7 +32,6 @@
                 font-size: 14px;
                 font-family: 'TeX Gyre Adventor';
                 font-weight: 400;
-                line-height: 0;
             }
             
         }
@@ -51,14 +49,12 @@
                     font-size: 20px;
                     font-family: 'TeX Gyre Adventor';
                     font-weight: 400;
-                    line-height: 0;
                 }
                 & .category {
                     color: #BDBDBD;
                     font-size: 12px;
                     font-family: 'TeX Gyre Adventor';
                     font-weight: 400;
-                    line-height: 0;
                 }
             }
 
@@ -80,7 +76,6 @@
                     font-size: 32px;
                     font-family: 'TeX Gyre Adventor';
                     font-weight: 400;
-                    line-height: 0;
 
                     &.increase {
                         color: #50B848;
@@ -91,7 +86,141 @@
                 }
             }
         }
+
+        & .heading {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            & .title {
+                font-size: 18px;
+                font-family: 'TeX Gyre Adventor';
+                font-weight: 400;
+                
+            }
+
+            & .icon {
+                border-radius: 50%;
+                border: 1px solid #99999926;
+                padding: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+           
+        }
     }
+
+    & .scan {
+        overflow: hidden;
+        position: relative;
+        & .col {
+            display: flex;
+            flex-direction: column;
+            & .title {
+                font-size: 16px;
+                font-family: 'TeX Gyre Adventor';
+                font-weight: 400;
+            }
+            & .text {
+                font-size: 10px;
+                font-family: 'TeX Gyre Adventor';
+                font-weight: 400;
+            }
+            & .icon {
+                padding: 12px;
+                border: 1px solid #99999926;
+                padding: 12px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 20px;
+                align-self: flex-start;
+            }
+        }
+
+        & .img {
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+            width: 125px;
+            height: 125px;
+        }
+    }
+
+    & .purchases {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        & .list {
+            flex: 1;
+            padding: 0 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            margin: 0;
+            & .item {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: 40px;
+                & p {
+                    font-size: 14px;
+                    font-family: 'TeX Gyre Adventor';
+                    font-weight: 400;
+                    
+                }
+
+                & .name {
+                    flex: 1;
+                    color: #828282;
+                }
+                & .count {
+                    color: #BDBDBD;
+                }
+                & .price {
+                    color: #828282;
+                    align-self: flex-end;
+                } 
+            }
+        }
+    }
+
+    & .details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        & .detailsWrapper {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 28px;
+            border: 1px solid #99999926;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            & .text {
+                font-size: 10px;
+                font-family: 'TeX Gyre Adventor';
+                font-weight: 400;
+                
+                color: #999999;
+            } 
+            & .subTitle {
+                font-size: 10px;
+                font-family: 'TeX Gyre Adventor';
+                font-weight: 400;
+                
+                color: #999999;
+                text-transform: uppercase;
+            }
+        }
+    }
+
     & .actions {
         display: flex;
         gap: 8px;
@@ -104,7 +233,7 @@
                 align-items: center;
                 gap: 10px;
                 & .actionText {
-                    line-height: 0;
+                    
                     &.warning {
                         color: #D85752;
                     }

@@ -5,4 +5,9 @@ export interface Operation {
     sum: number;
     refNo: string;
     transactionDate: Date
+    purchases?: {
+        name: string;
+        price: number;
+        count: number
+    }[] 
 }

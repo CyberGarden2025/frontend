@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 
 import { FirebaseProvider } from './providers/FirebaseProvider';
 import { RouterProvider } from './providers/RouterProvider';
+import { KeycloakProvider } from '@shared/lib';
 
 initSentry();
 
@@ -29,10 +30,12 @@ if (import.meta.env.DEV) {
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <Provider store={store}>
-            <FirebaseProvider>
-                <RouterProvider />
-            </FirebaseProvider>
-        </Provider>
+        <KeycloakProvider>
+            <Provider store={store}>
+                <FirebaseProvider>
+                    <RouterProvider />
+                </FirebaseProvider>
+            </Provider>
+        </KeycloakProvider>
     </StrictMode>,
 );

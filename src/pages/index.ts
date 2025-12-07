@@ -5,5 +5,5 @@ export * from './ScanReceiptPage';
 export * from './ChatPage';
 export * from './FinancialForecastPage';
 export * from './DetailedTransactionPage';
-
-
+export * from './CategoryPage';
+export * from './NewLimitPage';
