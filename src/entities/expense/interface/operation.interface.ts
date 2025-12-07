@@ -1,13 +1,14 @@
-import type { ExpenseType } from "../type";
+import type { ExpenseType } from '../type';
 
 export interface Operation {
+    id: number;
     category: ExpenseType;
     sum: number;
     refNo: string;
-    transactionDate: Date
+    transactionDate: Date;
     purchases?: {
         name: string;
         price: number;
-        count: number
-    }[] 
+        count: number;
+    }[];
 }
