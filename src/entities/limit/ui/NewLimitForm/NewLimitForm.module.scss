@@ -1,0 +1,166 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    & .card {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        border: 1px solid #99999940;
+        border-radius: 28px;
+        padding: 16px 16px 20px 16px;
+        backdrop-filter: blug(10px);
+
+        & .subTitle {
+            font-family: 'TeX Gyre Adventor', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+        }
+
+        & .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid #99999940;
+            border-radius: 50%;
+        }
+        & .name {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            & .nameInput {
+                border: none;
+                padding: 10px 0;
+                background-color: #e9eeea;
+                font-family: 'TeX Gyre Adventor', sans-serif;
+                font-weight: 400;
+                font-size: 18px;
+                color: #999;
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        & .iconTitle {
+            font-family: 'TeX Gyre Adventor', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        & .list {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            & .item {
+                border: 1px solid #99999940;
+                border-radius: 50%;
+                padding: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: 0.3s all ease;
+                &.active {
+                    border: 1px solid #50b848;
+                    & path {
+                        stroke: #50b848;
+                    }
+                }
+            }
+        }
+
+        & .textArea {
+            background-color: #e9eeea;
+            border: 1px solid #99999926;
+            border-radius: 14px;
+            padding: 16px;
+            color: #1f1f1f;
+            font-family: 'TeX Gyre Adventor', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            &:focus {
+                outline: none;
+            }
+        }
+        & .descriptionText {
+            font-family: 'TeX Gyre Adventor', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        & .categoryList {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            display: flex;
+            align-items: center;
+
+            & .categoryItem {
+                list-style: none;
+                padding: 12px 16px;
+                background-color: #50b84808;
+                border: 1px solid #99999926;
+                border-radius: 100px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                & p {
+                    font-family: 'TeX Gyre Adventor', sans-serif;
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+            }
+        }
+        & .limitInputWrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+
+            &::after {
+                content: '₽';
+                position: absolute;
+                right: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 20px;
+                font-family: 'TeX Gyre Adventor', sans-serif;
+                color: #999999;
+                pointer-events: none;
+            }
+
+            .limitInput {
+                background-color: #e9eeea;
+                border: 1px solid #99999926;
+                border-radius: 14px;
+                padding: 16px;
+                color: #1f1f1f;
+                font-family: 'TeX Gyre Adventor', sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                width: 100%;
+                padding-right: 40px;
+
+                &:focus {
+                    outline: none;
+                }
+
+                /* Убираем стрелочки у number input */
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                &[type='number'] {
+                    -moz-appearance: textfield;
+                    appearance: textfield;
+                }
+            }
+        }
+    }
+}

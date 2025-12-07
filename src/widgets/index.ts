@@ -8,5 +8,5 @@ export * from './FinancialCushionWidget';
 export * from './OptimizationRecommendationsWidget';
 export * from './TotalFundsWidget';
 export * from './FinancesWidget';
-
-
+export * from "./FInanceBarWidget"
+export * from "./LimitBarWidget"

@@ -2,7 +2,6 @@ import { type FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IconButton, Button } from '@shared/ui';
 import {
-    MoreIcon,
     SettingsIcon,
     FilterIcon,
     CalendarIcon,
@@ -24,9 +23,8 @@ import imageSvg from '@shared/assets/Image (1).svg';
 import styles from './MainPage.module.scss';
 
 export const MainPage: FC = () => {
-    const navigate = useNavigate();
     const [period, setPeriod] = useState('Месяц');
-
+    const navigate = useNavigate()
     const totalAmount = 420318;
     const decimalAmount = 0;
     const monthsCovered = 3;
@@ -183,7 +181,7 @@ export const MainPage: FC = () => {
                                 onClick: handleChatClick,
                             },
                             {
-                                icon: <div style={{transform: "rotate(135deg)"}}><ArrowBackIcon /></div>,
+                                icon: <div onClick={() => navigate("/categories")} style={{transform: "rotate(135deg)"}}><ArrowBackIcon /></div>,
                                 badge: false,
                             },
                         ]}

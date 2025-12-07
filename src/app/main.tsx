@@ -11,6 +11,7 @@ import { UserServiceProvider } from '../UserServiceProvider';
 
 import { FirebaseProvider } from './providers/FirebaseProvider';
 import { RouterProvider } from './providers/RouterProvider';
+import { KeycloakProvider } from '@shared/lib';
 
 initSentry();
 

@@ -8,5 +8,4 @@ export * from './Message';
 export * from './MessageList';
 export * from './MessageInput';
 export * from './MessageButtons';
-
-
+export * from './Dropdown';

@@ -13,4 +13,10 @@ export * from './SettingsIcon';
 export * from './WalletIcon';
 export * from './SalaryIcon';
 export * from './ShoppingIcon';
-export * from "./EditIcon"
+export * from './EditIcon';
+export * from './ReceiptIcon';
+export * from './ScanIcon';
+export * from './AddIcon';
+export * from './TextIcon';
+export * from './CrossIcon';
+export * from './ChevronIcon';
