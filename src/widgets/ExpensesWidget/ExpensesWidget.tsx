@@ -3,7 +3,6 @@ import { type FC, type ReactNode, useEffect } from 'react';
 import { Chart, IconButton } from '@shared/ui';
 import { useGetExpensesChartMutation } from '@shared/api';
 import styles from './ExpensesWidget.module.scss';
-import { useKeycloak } from '@react-keycloak/web';
 
 export interface ExpensesWidgetProps {
     monthlyAmount?: number;
@@ -30,15 +29,12 @@ export const ExpensesWidget: FC<ExpensesWidgetProps> = ({
     style,
 }) => {
     const [getExpensesChart, { data: expensesData, isLoading }] = useGetExpensesChartMutation();
-    const { keycloak } = useKeycloak();
-    const isAuthed = keycloak?.authenticated;
 
     useEffect(() => {
-        if (!isAuthed) return;
         getExpensesChart({
             startDate: '01/12/2023',
         });
-    }, [getExpensesChart, isAuthed]);
+    }, [getExpensesChart]);
 
     const formatAmount = (amount: number): { thousands: string; hundreds: string } => {
         const amountStr = amount.toString();
@@ -54,10 +50,10 @@ export const ExpensesWidget: FC<ExpensesWidgetProps> = ({
     };
 
     const monthlyAmount = expensesData?.currentMonthExpenses ?? propMonthlyAmount ?? 0;
-    const monthLabel = expensesData?.months?.[0] 
-        ? `за ${expensesData.months[0].monthFull.toLowerCase()}` 
+    const monthLabel = expensesData?.months?.[0]
+        ? `за ${expensesData.months[0].monthFull.toLowerCase()}`
         : propMonthLabel ?? '';
-    
+
     const getChartValues = (): [number, number, number, number, number, number, number] => {
         if (expensesData?.months) {
             const amounts = expensesData.months.slice(0, 7).map(m => m.amount);
@@ -68,7 +64,7 @@ export const ExpensesWidget: FC<ExpensesWidgetProps> = ({
         }
         return propChartValues ?? [0, 0, 0, 0, 0, 0, 0];
     };
-    
+
     const chartValues = getChartValues();
 
     const { thousands, hundreds } = formatAmount(monthlyAmount);
