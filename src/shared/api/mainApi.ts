@@ -55,11 +55,11 @@ const mainApi = createApi({
     reducerPath: 'mainApi',
     baseQuery: baseQueryWithReauth,
     endpoints: builder => ({
-        updateFcmToken: builder.mutation<void, { userId: string; fcmToken: string }>({
-            query: ({ userId, fcmToken }) => ({
+        updateFcmToken: builder.mutation<void, { fcmToken: string }>({
+            query: ({ fcmToken }) => ({
                 url: '/notifications/token',
                 method: 'PATCH',
-                body: { userId, fcmToken },
+                body: { fcmToken },
             }),
         }),
         getUser: builder.query<UserResponse, void>({
