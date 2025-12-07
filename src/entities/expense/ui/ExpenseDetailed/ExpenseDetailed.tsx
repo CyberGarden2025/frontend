@@ -88,7 +88,7 @@ export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({transaction}) => {
                         <ReceiptIcon/>
                     </div>
                 </div>
-                {transaction.purchases && <ul className={cls.list}>
+                {transaction?.purchases && <ul className={cls.list}>
                         {transaction.purchases.map((item) => (
                             <li className={cls.item}>
                                 <p className={cls.name}>
