@@ -15,10 +15,9 @@ const routerFutureFlags = {
     v7_normalizeFormMethod: true,
     v7_partialHydration: true,
     v7_skipActionErrorRevalidation: true,
-} as any;
+} as unknown;
 
-const router = createBrowserRouter(
-    [
+const router = createBrowserRouter([
     {
         path: '/',
         children: [
