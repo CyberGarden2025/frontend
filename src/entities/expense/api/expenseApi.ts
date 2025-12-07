@@ -11,11 +11,13 @@ export const expenseApi = mainApi.injectEndpoints({
                 url: `/transactions`,
                 method: 'POST',
             }),
+            invalidatesTags: ['Transaction'],
         }),
         getOperation: builder.query<Operation, { id: number }>({
             query: ({ id }) => ({
                 url: `/transactions/${id}/`,
             }),
+            providesTags: ['Transaction'],
         }),
         updateCategory: builder.mutation<Operation, { id: number; category: ExpenseType }>({
             query: ({ id, category }) => ({
@@ -26,7 +28,8 @@ export const expenseApi = mainApi.injectEndpoints({
                 },
             }),
         }),
-    }),
-});
+    })
+}) 
+
 export const { useAddOperationMutation, useUpdateCategoryMutation, useLazyGetOperationQuery } =
     expenseApi;

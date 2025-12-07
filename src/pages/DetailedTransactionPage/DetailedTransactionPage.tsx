@@ -37,7 +37,7 @@ export const DetailedTransactionPage = () => {
                         </h1>
                     )}
                 </div>
-                {data && <ExpenseDetailed transaction={data} />}
+                {data && id && <ExpenseDetailed transaction={data} transactionId={+id} onDelete={() => navigate('/operations')} />}
             </div>
         </div>
     );

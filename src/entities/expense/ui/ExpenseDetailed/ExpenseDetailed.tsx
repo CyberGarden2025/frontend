@@ -11,9 +11,31 @@ import { ExpenseUpdateCategory } from '../ExpenseUpdateCategory';
 export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({ transaction }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const navigate = useNavigate();
+    const [deleteTransaction, { isLoading: isDeleting }] = useDeleteTransactionMutation();
 
     const handleScanClick = () => {
         navigate('/scan-receipt');
+    };
+
+    const handleDelete = async () => {
+        if (!transactionId) {
+            return;
+        }
+
+        try {
+            await deleteTransaction({
+                id: transactionId,
+                category: transaction.category,
+            }).unwrap();
+            
+            if (onDelete) {
+                onDelete();
+            } else {
+                navigate('/operations');
+            }
+        } catch (error) {
+            console.error('Ошибка при удалении транзакции:', error);
+        }
     };
 
     return (
