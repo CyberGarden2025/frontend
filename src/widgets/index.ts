@@ -10,3 +10,4 @@ export * from './TotalFundsWidget';
 export * from './FinancesWidget';
 export * from "./FInanceBarWidget"
 export * from "./LimitBarWidget"
+export * from './FinancialForecastInfoWidget';

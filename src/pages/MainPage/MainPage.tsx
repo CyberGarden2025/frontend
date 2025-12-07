@@ -12,12 +12,14 @@ import {
     ArrowBackIcon,
     ShoppingIcon,
     WalletIcon,
+    NotificationIcon,
 } from '@shared/ui/icons';
 import {
     TotalFundsWidget,
     OperationsWidget,
     ExpensesWidget,
     CategoriesWidget,
+    FinancialForecastInfoWidget,
 } from '@widgets';
 import type { Category } from '@shared/ui';
 import maleMemojisSvg from '@shared/assets/Male Memojis.svg';
@@ -26,7 +28,7 @@ import styles from './MainPage.module.scss';
 
 export const MainPage: FC = () => {
     const [period, setPeriod] = useState('Месяц');
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const totalAmount = 420318;
     const decimalAmount = 0;
     const monthsCovered = 3;
@@ -49,6 +51,10 @@ export const MainPage: FC = () => {
 
     const handleChatClick = () => {
         navigate('/chat');
+    };
+
+    const handleNotificationClick = () => {
+        navigate('/notifications');
     };
 
     return (
@@ -116,6 +122,13 @@ export const MainPage: FC = () => {
                             variant="primary"
                             state="default"
                             size="large"
+                        />
+                        <IconButton
+                            icon={<NotificationIcon />}
+                            variant="primary"
+                            state="default"
+                            size="large"
+                            onClick={handleNotificationClick}
                         />
                         <Button
                             label="Новая категория"
@@ -189,33 +202,7 @@ export const MainPage: FC = () => {
                         ]}
                     />
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
-                        <h2 style={{ fontFamily: 'TeX Gyre Adventor, sans-serif', fontSize: '20px', marginBottom: '8px' }}>Тестирование NotificationItem</h2>
-                        
-                        <NotificationItem
-                            categoryIcon={<ShoppingIcon />}
-                            label="Новое уведомление"
-                            description="Это новое уведомление с иконкой категории. Попробуйте свайпнуть влево для удаления"
-                            time="19:10"
-                            onDelete={() => console.log('Уведомление удалено')}
-                        />
-
-                        <NotificationItem
-                            categoryIcon={<WalletIcon />}
-                            label="Уведомление о транзакции"
-                            description="Произошла новая транзакция на сумму 5000 рублей"
-                            time="18:30"
-                            onDelete={() => console.log('Уведомление удалено')}
-                        />
-
-                        <NotificationItem
-                            categoryIcon={<ShoppingIcon />}
-                            label="Уведомление о лимите"
-                            description="Вы приблизились к лимиту расходов по категории Продукты"
-                            time="17:45"
-                            onDelete={() => console.log('Уведомление удалено')}
-                        />
-                    </div>
+                    <FinancialForecastInfoWidget />
                 </div>
             </div>
         </div>

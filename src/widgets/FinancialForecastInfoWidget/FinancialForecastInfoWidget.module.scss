@@ -1,0 +1,106 @@
+.root {
+    border: 1px solid rgba(153, 153, 153, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 24px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    position: relative;
+    border-radius: 32px;
+    width: 100%;
+    background-color: #e9eeea;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.textContainer {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    min-height: 1px;
+    min-width: 1px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.title {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    font-style: normal;
+    color: #1f1f1f;
+    margin: 0;
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
+    font-style: normal;
+    color: #999999;
+    white-space: pre-wrap;
+}
+
+.description p {
+    margin: 0;
+}
+
+.description p:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(153, 153, 153, 0.15);
+    cursor: pointer;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    position: relative;
+    border-radius: 100px;
+    flex-shrink: 0;
+}
+
