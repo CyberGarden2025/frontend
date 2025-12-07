@@ -10,12 +10,14 @@ export const expenseApi = mainApi.injectEndpoints({
                 url: `/transactions`,
                 method: 'POST',
             }),
+            invalidatesTags: ['Transaction'],
         }),
         getOperation: builder.query<Operation, {id: number}>({
             query: ({id}) => ({
                 url: `/transactions/${id}/`,
 
-            })
+            }),
+            providesTags: ['Transaction'],
         })
     })
 }) 

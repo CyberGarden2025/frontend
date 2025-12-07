@@ -47,6 +47,10 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     return result;
 };
 
+export interface UserResponse {
+    balance: number;
+}
+
 const mainApi = createApi({
     reducerPath: 'mainApi',
     baseQuery: baseQueryWithReauth,
@@ -58,10 +62,16 @@ const mainApi = createApi({
                 body: { userId, fcmToken },
             }),
         }),
+        getUser: builder.query<UserResponse, void>({
+            query: () => ({
+                url: '/users',
+                method: 'GET',
+            }),
+        }),
     }),
-    tagTypes: [''],
+    tagTypes: ['Transaction'],
 });
 
-export const { useUpdateFcmTokenMutation } = mainApi;
+export const { useUpdateFcmTokenMutation, useGetUserQuery } = mainApi;
 
 export default mainApi;

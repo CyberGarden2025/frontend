@@ -102,7 +102,15 @@ export const transactionsApi = mainApi.injectEndpoints({
                 body: { monthDate },
             }),
         }),
+        deleteTransaction: builder.mutation<void, { id: number; category: string }>({
+            query: ({ id, category }) => ({
+                url: `/transactions/${id}`,
+                method: 'DELETE',
+                body: { category },
+            }),
+            invalidatesTags: ['Transaction'],
+        }),
     }),
 });
 
-export const { useGetTransactionsQuery, useGetTransactionsTotalQuery, useGetExpensesChartMutation, useGetMonthSummaryMutation, useGetCategoriesMonthMutation } = transactionsApi;
+export const { useGetTransactionsQuery, useGetTransactionsTotalQuery, useGetExpensesChartMutation, useGetMonthSummaryMutation, useGetCategoriesMonthMutation, useDeleteTransactionMutation } = transactionsApi;

@@ -6,13 +6,36 @@ import { CardIcon, EditIcon, ReceiptIcon, ScanIcon } from "@shared/ui/icons";
 import clsx from "clsx"
 import { categoryIconMapping, readableCategory } from "@entities/expense/lib";
 import { Button } from "@shared/ui";
+import { useDeleteTransactionMutation } from "@shared/api";
 
 
-export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({transaction}) => {
+export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({transaction, transactionId, onDelete}) => {
     const navigate = useNavigate();
+    const [deleteTransaction, { isLoading: isDeleting }] = useDeleteTransactionMutation();
 
     const handleScanClick = () => {
         navigate('/scan-receipt');
+    };
+
+    const handleDelete = async () => {
+        if (!transactionId) {
+            return;
+        }
+
+        try {
+            await deleteTransaction({
+                id: transactionId,
+                category: transaction.category,
+            }).unwrap();
+            
+            if (onDelete) {
+                onDelete();
+            } else {
+                navigate('/operations');
+            }
+        } catch (error) {
+            console.error('Ошибка при удалении транзакции:', error);
+        }
     };
 
     return (
@@ -51,13 +74,17 @@ export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({transaction}) => {
                </div>
             </div>
             <div className={cls.actions}>
-                <Button label={(
-                    <div className={cls.buttonContent}>
-                        <p className={clsx(cls.actionText, cls.warning)}>
-                            Удалить
-                        </p>
-                    </div>
-                )}/>
+                <Button 
+                    label={(
+                        <div className={cls.buttonContent}>
+                            <p className={clsx(cls.actionText, cls.warning)}>
+                                Удалить
+                            </p>
+                        </div>
+                    )}
+                    onClick={handleDelete}
+                    disabled={isDeleting || !transactionId}
+                />
                 <Button label={(
                     <div className={cls.buttonContent}>
                         <EditIcon/>

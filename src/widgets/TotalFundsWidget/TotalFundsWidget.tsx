@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { IconButton } from '@shared/ui';
 import { MoreIcon, SettingsIcon, WalletIcon, ChatIcon, ExpandIcon, ArrowBackIcon } from '@shared/ui/icons';
+import { useGetUserQuery } from '@shared/api';
 import styles from './TotalFundsWidget.module.scss';
 
 export interface TotalFundsWidgetProps {
@@ -15,7 +16,7 @@ export interface TotalFundsWidgetProps {
 }
 
 export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
-    totalAmount,
+    totalAmount: propTotalAmount,
     decimalAmount,
     monthsCovered,
     notificationCount = 0,
@@ -23,12 +24,14 @@ export const TotalFundsWidget: FC<TotalFundsWidgetProps> = ({
     style,
 }) => {
     const navigate = useNavigate();
+    const { data: userData } = useGetUserQuery();
 
     const formatAmount = (amount: number): string => {
         return new Intl.NumberFormat('ru-RU').format(amount);
     };
 
-    const totalAmountStr = totalAmount.toString();
+    const totalAmount = userData?.balance ?? propTotalAmount ?? 0;
+    const totalAmountStr = Math.floor(totalAmount).toString();
     const mainPart = totalAmountStr.length > 3 ? totalAmountStr.slice(0, -3) : totalAmountStr;
     const decimalPart = totalAmountStr.length > 3 ? totalAmountStr.slice(-3) : '';
 

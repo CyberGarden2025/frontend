@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { type FC, type ReactNode, useEffect } from 'react';
+import { type FC, type ReactNode } from 'react';
 import { IconButton, Button } from '@shared/ui';
-import { useGetMonthSummaryMutation } from '@shared/api';
+import { useGetTransactionsTotalQuery } from '@shared/api';
 import styles from './OperationsWidget.module.scss';
 import { FinanceBarWidget } from '@widgets/FInanceBarWidget';
 
@@ -28,20 +28,17 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
     className,
     style,
 }) => {
-    const [getMonthSummary, { data: monthSummaryData }] = useGetMonthSummaryMutation();
-
-    useEffect(() => {
-        getMonthSummary({
-            monthDate: '01/12/2023',
-        });
-    }, [getMonthSummary]);
+    const { data: transactionsTotalData } = useGetTransactionsTotalQuery({
+        start: '2023-08-01',
+        end: '2023-08-31',
+    });
 
     const formatAmount = (amount: number): string => {
         return amount.toLocaleString('ru-RU');
     };
 
-    const income = monthSummaryData?.income ?? propIncome ?? 0;
-    const expenses = monthSummaryData?.expenses ?? propExpenses ?? 0;
+    const income = transactionsTotalData?.income ?? propIncome ?? 0;
+    const expenses = transactionsTotalData?.expense ?? propExpenses ?? 0;
 
     const incomeFormatted = formatAmount(income);
     const expensesFormatted = formatAmount(expenses);
@@ -70,7 +67,7 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
                 <Button label={periodButtonLabel} variant="primary" state="default" size="medium" />
             </div>
 
-            <FinanceBarWidget income={1200.22} expense={2000.2} />
+            <FinanceBarWidget income={income} expense={expenses} />
         </div>
     );
 };

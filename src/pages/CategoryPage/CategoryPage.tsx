@@ -13,19 +13,13 @@ import { useNavigate } from 'react-router-dom';
 import { CategoriesWidget } from '@widgets';
 import type { LimitCardProps } from '@entities/limit/ui/LimitCard/LimitCard.props';
 import { LimitCard } from '@entities/limit';
-
-const items: LimitCardProps[] = [
-    {
-        category: 'Food',
-        expense: 2000,
-        id: 1,
-        income: 3000,
-        name: 'Rockets.Coffee',
-        color: '#F7B980',
-    },
-];
+import { useGetLimitsQuery } from '@shared/api';
+import type { ExpenseType } from '@entities/expense';
 
 export const CategoryPage = () => {
+    const navigate = useNavigate();
+    const { data: limitsData } = useGetLimitsQuery();
+
     const categories: Category[] = [
         { name: 'Продукты', value: 30 },
         { name: 'Ипотека', value: 25 },
@@ -38,7 +32,16 @@ export const CategoryPage = () => {
         navigate('/chat');
     };
 
-    const navigate = useNavigate();
+    const limits: LimitCardProps[] = limitsData
+        ? limitsData.map((limit, index) => ({
+              id: index + 1,
+              name: limit.name,
+              category: (limit.categories[0] || 'Food') as ExpenseType,
+              income: limit.limit,
+              expense: limit.spent,
+              color: undefined,
+          }))
+        : [];
     return (
         <div className={cls.root}>
             <div className={cls.container}>
@@ -109,7 +112,7 @@ export const CategoryPage = () => {
                 <div className={cls.limitWrapper}>
                     <h1 className={cls.title}>Мои лимиты</h1>
                     <ul className={cls.list}>
-                        {items.map(item => (
+                        {limits.map(item => (
                             <LimitCard key={item.id} {...item} />
                         ))}
                     </ul>
