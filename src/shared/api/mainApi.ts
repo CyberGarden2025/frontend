@@ -69,7 +69,7 @@ const mainApi = createApi({
             }),
         }),
     }),
-    tagTypes: ['Transaction'],
+    tagTypes: ['Transaction', 'Limit'],
 });
 
 export const { useUpdateFcmTokenMutation, useGetUserQuery } = mainApi;

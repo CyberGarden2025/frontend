@@ -5,6 +5,8 @@ import { limitIcons, type NewLimit } from '@entities/limit';
 import clsx from 'clsx';
 import { readableCategory, type ExpenseType } from '@entities/expense';
 import { Button, Dropdown } from '@shared/ui';
+import { useAddLimitMutation } from '@entities/limit/api';
+import { useNavigate } from 'react-router';
 
 export const NewLimitForm = () => {
     const [data, setdata] = useState<NewLimit>({
@@ -15,12 +17,18 @@ export const NewLimitForm = () => {
         description: null,
         categories: [],
     });
-
+    const [trigger] = useAddLimitMutation();
+    const navigate = useNavigate();
     const handleChange = (key: keyof NewLimit, value: string | number) => {
         setdata(prev => ({
             ...prev,
             [key]: value,
         }));
+    };
+
+    const handleSave = async () => {
+        await trigger(data);
+        navigate(-1);
     };
 
     return (
@@ -145,7 +153,7 @@ export const NewLimitForm = () => {
                 <h3 className={cls.subTitle}>Период действия</h3>
             </li>
 
-            <Button label="Сохранить лимит" />
+            <Button onClick={() => handleSave()} label="Сохранить лимит" />
         </ul>
     );
 };

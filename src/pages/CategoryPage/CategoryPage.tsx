@@ -13,12 +13,12 @@ import { useNavigate } from 'react-router-dom';
 import { CategoriesWidget } from '@widgets';
 import type { LimitCardProps } from '@entities/limit/ui/LimitCard/LimitCard.props';
 import { LimitCard } from '@entities/limit';
-import { useGetLimitsQuery } from '@shared/api';
 import type { ExpenseType } from '@entities/expense';
+import { useGetLimitsQuery } from '@entities/limit/api';
 
 export const CategoryPage = () => {
     const navigate = useNavigate();
-    const { data: limitsData } = useGetLimitsQuery();
+    const { data: limitsData } = useGetLimitsQuery(null);
 
     const categories: Category[] = [
         { name: 'Продукты', value: 30 },
@@ -33,7 +33,7 @@ export const CategoryPage = () => {
     };
 
     const limits: LimitCardProps[] = limitsData
-        ? limitsData.map((limit, index) => ({
+        ? limitsData?.map((limit, index) => ({
               id: index + 1,
               name: limit.name,
               category: (limit.categories[0] || 'Food') as ExpenseType,
