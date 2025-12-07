@@ -7,3 +7,4 @@ export * from './FinancialForecastPage';
 export * from './DetailedTransactionPage';
 export * from './CategoryPage';
 export * from './NewLimitPage';
+export * from './NotificationsPage';

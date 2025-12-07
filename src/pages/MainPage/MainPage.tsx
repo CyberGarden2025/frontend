@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IconButton, Button } from '@shared/ui';
+import { IconButton, Button, NotificationItem } from '@shared/ui';
 import {
     SettingsIcon,
     FilterIcon,
@@ -10,6 +10,8 @@ import {
     GraphIcon,
     RefreshIcon,
     ArrowBackIcon,
+    ShoppingIcon,
+    WalletIcon,
 } from '@shared/ui/icons';
 import {
     TotalFundsWidget,
@@ -186,6 +188,34 @@ export const MainPage: FC = () => {
                             },
                         ]}
                     />
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '24px' }}>
+                        <h2 style={{ fontFamily: 'TeX Gyre Adventor, sans-serif', fontSize: '20px', marginBottom: '8px' }}>Тестирование NotificationItem</h2>
+                        
+                        <NotificationItem
+                            categoryIcon={<ShoppingIcon />}
+                            label="Новое уведомление"
+                            description="Это новое уведомление с иконкой категории. Попробуйте свайпнуть влево для удаления"
+                            time="19:10"
+                            onDelete={() => console.log('Уведомление удалено')}
+                        />
+
+                        <NotificationItem
+                            categoryIcon={<WalletIcon />}
+                            label="Уведомление о транзакции"
+                            description="Произошла новая транзакция на сумму 5000 рублей"
+                            time="18:30"
+                            onDelete={() => console.log('Уведомление удалено')}
+                        />
+
+                        <NotificationItem
+                            categoryIcon={<ShoppingIcon />}
+                            label="Уведомление о лимите"
+                            description="Вы приблизились к лимиту расходов по категории Продукты"
+                            time="17:45"
+                            onDelete={() => console.log('Уведомление удалено')}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ import { ChatPage } from '@pages/ChatPage';
 import { FinancialForecastPage } from '@pages/FinancialForecastPage';
 import type { FC } from 'react';
 import { createBrowserRouter, RouterProvider as ReactRouter, redirect } from 'react-router-dom';
-import { CategoryPage, DetailedTransactionPage, NewLimitPage } from '@pages';
+import { CategoryPage, DetailedTransactionPage, NewLimitPage, NotificationsPage } from '@pages';
 
 const router = createBrowserRouter([
     {
@@ -66,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: '/financial-forecast',
                 element: <FinancialForecastPage />,
+            },
+            {
+                path: '/notifications',
+                element: <NotificationsPage />,
             },
         ],
     },

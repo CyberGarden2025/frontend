@@ -1,0 +1,240 @@
+.root {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    border: 1px solid rgba(153, 153, 153, 0.25);
+    border-radius: 36px;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+.root.swiped {
+    border-radius: 36px;
+}
+
+.container {
+    backdrop-filter: blur(5px);
+    background-color: rgba(230, 230, 230, 0.1);
+    border: 1px solid rgba(153, 153, 153, 0.25);
+    border-radius: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    padding: 16px;
+    padding-bottom: 18px;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    transition: transform 0.2s ease-out;
+    flex: 1 0 0;
+    min-width: 0;
+}
+
+.containerSwiped {
+    border-radius: 0;
+    border-top-left-radius: 36px;
+    border-bottom-left-radius: 36px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: -4px;
+    position: relative;
+    flex-shrink: 0;
+    width: 326px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.headerContent {
+    display: flex;
+    flex: 1 0 0;
+    gap: 10px;
+    align-items: center;
+    min-height: 1px;
+    min-width: 1px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.categoryIconWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-left: 0;
+    padding-right: 13px;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.labelContainer {
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    min-height: 1px;
+    min-width: 1px;
+    padding-bottom: 2px;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.label {
+    flex: 1 0 0;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: normal;
+    font-style: normal;
+    min-height: 1px;
+    min-width: 1px;
+    position: relative;
+    flex-shrink: 0;
+    white-space: pre-wrap;
+}
+
+.labelNew {
+    color: #1f1f1f;
+}
+
+.labelOld {
+    color: #6b6b6b;
+}
+
+.descriptionContainer {
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.description {
+    flex: 1 0 0;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    font-style: normal;
+    min-height: 1px;
+    min-width: 1px;
+    position: relative;
+    flex-shrink: 0;
+    color: #999999;
+    white-space: pre-wrap;
+}
+
+.timeContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: -4px;
+    padding-bottom: 2px;
+    padding-left: 0;
+    padding-right: 8px;
+    padding-top: 0;
+    position: relative;
+    flex-shrink: 0;
+    width: 326px;
+}
+
+.time {
+    flex: 1 0 0;
+    font-family: 'TeX Gyre Adventor', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    font-style: normal;
+    min-height: 1px;
+    min-width: 1px;
+    position: relative;
+    flex-shrink: 0;
+    color: #999999;
+    text-align: right;
+    white-space: pre-wrap;
+}
+
+.actionContainer {
+    background: var(--error-container-muted, rgba(193, 53, 46, 0.03));
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 16px;
+    padding-bottom: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    pointer-events: none;
+    align-self: stretch;
+    height: 100%;
+}
+
+.actionContainerVisible {
+    pointer-events: auto;
+}
+
+.actionButtonWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 14.857px;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.deleteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: -14.857px;
+    width: 56px;
+    height: 56px;
+}
+
+
+
+.deleteButton svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+}

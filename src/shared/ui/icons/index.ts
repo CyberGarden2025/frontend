@@ -20,3 +20,7 @@ export * from './AddIcon';
 export * from './TextIcon';
 export * from './CrossIcon';
 export * from './ChevronIcon';
+export * from './TrashIcon';
+export * from './NotificationIcon';
+export * from './StarIcon';
+export * from './QuestionIcon';
