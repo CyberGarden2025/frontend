@@ -6,20 +6,19 @@ import { store } from '@shared/store';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { KeycloakWrapper } from '../kcProvider';
-import { UserServiceProvider } from '../UserServiceProvider';
 
 import { FirebaseProvider } from './providers/FirebaseProvider';
 import { RouterProvider } from './providers/RouterProvider';
-import { KeycloakProvider } from '@shared/lib';
 
 initSentry();
 
 if (typeof window !== 'undefined') {
-    (window as typeof window & {
-        triggerSentryTestError?: () => void;
-        myUndefinedFunction?: () => void;
-    }).triggerSentryTestError = triggerSentryTestError;
+    (
+        window as typeof window & {
+            triggerSentryTestError?: () => void;
+            myUndefinedFunction?: () => void;
+        }
+    ).triggerSentryTestError = triggerSentryTestError;
 
     // Expose the Sentry test trigger on the legacy name used in the snippet.
     (window as typeof window & { myUndefinedFunction?: () => void }).myUndefinedFunction =
@@ -32,14 +31,10 @@ if (import.meta.env.DEV) {
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <KeycloakWrapper>
-            <UserServiceProvider>
-                <Provider store={store}>
-                    <FirebaseProvider>
-                        <RouterProvider />
-                    </FirebaseProvider>
-                </Provider>
-            </UserServiceProvider>
-        </KeycloakWrapper>
+        <Provider store={store}>
+            <FirebaseProvider>
+                <RouterProvider />
+            </FirebaseProvider>
+        </Provider>
     </StrictMode>,
 );

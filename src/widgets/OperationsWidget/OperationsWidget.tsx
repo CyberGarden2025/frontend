@@ -3,9 +3,7 @@ import { type FC, type ReactNode, useEffect } from 'react';
 import { IconButton, Button } from '@shared/ui';
 import { useGetMonthSummaryMutation } from '@shared/api';
 import styles from './OperationsWidget.module.scss';
-import { useKeycloak } from '@react-keycloak/web';
 import { FinanceBarWidget } from '@widgets/FInanceBarWidget';
-
 
 export interface OperationsWidgetProps {
     title: string;
@@ -31,15 +29,12 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
     style,
 }) => {
     const [getMonthSummary, { data: monthSummaryData }] = useGetMonthSummaryMutation();
-    const { keycloak } = useKeycloak();
-    const isAuthed = keycloak?.authenticated;
 
     useEffect(() => {
-        if (!isAuthed) return;
         getMonthSummary({
             monthDate: '01/12/2023',
         });
-    }, [getMonthSummary, isAuthed]);
+    }, [getMonthSummary]);
 
     const formatAmount = (amount: number): string => {
         return amount.toLocaleString('ru-RU');
@@ -72,15 +67,10 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
                     )}
                     <h2 className={styles.title}>{title}</h2>
                 </div>
-                <Button
-                    label={periodButtonLabel}
-                    variant="primary"
-                    state="default"
-                    size="medium"
-                />
+                <Button label={periodButtonLabel} variant="primary" state="default" size="medium" />
             </div>
 
-            <FinanceBarWidget income={1200.22} expense={2000.20}/>
+            <FinanceBarWidget income={1200.22} expense={2000.2} />
         </div>
     );
 };

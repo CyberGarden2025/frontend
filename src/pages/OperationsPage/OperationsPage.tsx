@@ -14,7 +14,6 @@ import {
 } from '@shared/ui/icons';
 import styles from './OperationsPage.module.scss';
 import { ExpenseAddModal } from '@entities/expense';
-import { useKeycloak } from '@react-keycloak/web';
 
 const categoryLabels: Record<string, string> = {
     Food: 'Еда',
@@ -51,35 +50,28 @@ const getOperationLabel = (category: string): string => {
 
 export const OperationsPage: FC = () => {
     const navigate = useNavigate();
-    const { keycloak } = useKeycloak();
-    const [addModalOpen, setAddModalOpen] = useState<boolean>(false)
-    const isAuthed = keycloak?.authenticated;
-    const { data: backendTransactions, isLoading, error } = useGetTransactionsQuery(null, {
-        skip: !isAuthed,
+    const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+    const { data: backendTransactions, isLoading, error } = useGetTransactionsQuery(null);
+
+    const { data: totalData } = useGetTransactionsTotalQuery({
+        start: '2023-08-01',
+        end: '2023-08-31',
     });
-    
-    const { data: totalData } = useGetTransactionsTotalQuery(
-        {
-            start: '2023-08-01',
-            end: '2023-08-31',
-        },
-        { skip: !isAuthed },
-    );
 
     const transactions: Transaction[] = useMemo(() => {
         if (!backendTransactions) {
             return [];
         }
 
-        return backendTransactions.flatMap((dayGroup) =>
-            dayGroup.transaction.map((transaction) => ({
+        return backendTransactions.flatMap(dayGroup =>
+            dayGroup.transaction.map(transaction => ({
                 id: transaction.id,
                 operationLabel: getOperationLabel(transaction.category),
                 value: transaction.sum,
                 category: getCategoryLabel(transaction.category),
                 date: dayGroup.date,
                 icon: <WalletIcon />,
-            }))
+            })),
         );
     }, [backendTransactions]);
 
@@ -171,7 +163,7 @@ export const OperationsPage: FC = () => {
                     </div>
                 </div>
             </div>
-            <ExpenseAddModal isOpen={addModalOpen} setIsOpen={setAddModalOpen}  />
+            <ExpenseAddModal isOpen={addModalOpen} setIsOpen={setAddModalOpen} />
         </div>
     );
 };
