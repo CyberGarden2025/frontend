@@ -1,22 +1,32 @@
-import mainApi from "@shared/api/mainApi";
-import type { NewTransaction } from "../interface";
-import type { Operation } from "../interface/operation.interface";
+import mainApi from '@shared/api/mainApi';
+import type { NewTransaction } from '../interface';
+import type { Operation } from '../interface/operation.interface';
+import type { ExpenseType } from '../type';
 
 export const expenseApi = mainApi.injectEndpoints({
-    endpoints: (builder) => ({
+    endpoints: builder => ({
         addOperation: builder.mutation<Operation, NewTransaction>({
-            query: (body) => ({
+            query: body => ({
                 body,
                 url: `/transactions`,
                 method: 'POST',
             }),
         }),
-        getOperation: builder.query<Operation, {id: number}>({
-            query: ({id}) => ({
+        getOperation: builder.query<Operation, { id: number }>({
+            query: ({ id }) => ({
                 url: `/transactions/${id}/`,
-
-            })
-        })
-    })
-}) 
-export const {useAddOperationMutation, useLazyGetOperationQuery} = expenseApi
+            }),
+        }),
+        updateCategory: builder.mutation<Operation, { id: number; category: ExpenseType }>({
+            query: ({ id, category }) => ({
+                url: `/transactions/${id}/`,
+                method: 'PATCH',
+                body: {
+                    category,
+                },
+            }),
+        }),
+    }),
+});
+export const { useAddOperationMutation, useUpdateCategoryMutation, useLazyGetOperationQuery } =
+    expenseApi;
