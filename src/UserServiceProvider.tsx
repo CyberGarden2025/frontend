@@ -24,17 +24,25 @@ export const UserServiceProvider = ({ children }: { children: ReactNode }) => {
         if (!hasToken) return;
 
         const init = async () => {
-            const token = keycloak.token!;
-            apiService.setup(token);
-            const userId = keycloak.subject;
-
             try {
+                const token = keycloak.token!;
+                apiService.setup(token);
+                const userId = keycloak.subject;
+
+                if (!userId) {
+                    console.warn('User ID not available from Keycloak');
+                    return;
+                }
+
                 const profile = await authAxios.get<UserProfile>(
                     `${apiBaseUrl}/users/${userId}/profile`,
                 );
                 setUser(profile.data);
             } catch (e) {
-                console.warn('Cannot load profile', e);
+                const error = e as { response?: { status?: number } };
+                if (error.response?.status !== 401) {
+                    console.warn('Cannot load profile', e);
+                }
             }
         };
 

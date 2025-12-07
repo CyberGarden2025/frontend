@@ -15,72 +15,76 @@ const routerFutureFlags = {
     v7_normalizeFormMethod: true,
     v7_partialHydration: true,
     v7_skipActionErrorRevalidation: true,
-} as any;
+} as const;
 
 const router = createBrowserRouter(
     [
+        {
+            path: '/',
+            children: [
+                {
+                    index: true,
+                    element: <MainPage />,
+                },
+                {
+                    path: '/financial-summary',
+                    element: <FinancialSummaryPage />,
+                },
+                {
+                    path: '/operations',
+                    children: [
+                        {
+                            element: <OperationsPage />,
+                            index: true,
+                        },
+                        {
+                            path: ':id',
+                            element: <DetailedTransactionPage />,
+                        },
+                    ],
+                },
+                {
+                    path: '/categories',
+                    children: [
+                        {
+                            element: <CategoryPage />,
+                            index: true,
+                        },
+                        {
+                            path: 'limit',
+                            children: [
+                                {
+                                    index: true,
+                                    loader: () => redirect('/categories'),
+                                },
+                                {
+                                    element: <NewLimitPage />,
+                                    path: 'new',
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    path: '/scan-receipt',
+                    element: <ScanReceiptPage />,
+                },
+                {
+                    path: '/chat',
+                    element: <ChatPage />,
+                },
+                {
+                    path: '/financial-forecast',
+                    element: <FinancialForecastPage />,
+                },
+            ],
+        },
+    ],
     {
-        path: '/',
-        children: [
-            {
-                index: true,
-                element: <MainPage />,
-            },
-            {
-                path: '/financial-summary',
-                element: <FinancialSummaryPage />,
-            },
-            {
-                path: '/operations',
-                children: [
-                    {
-                        element: <OperationsPage />,
-                        index: true,
-                    },
-                    {
-                        path: ':id',
-                        element: <DetailedTransactionPage />,
-                    },
-                ],
-            },
-            {
-                path: '/categories',
-                children: [
-                    {
-                        element: <CategoryPage />,
-                        index: true,
-                    },
-                    {
-                        path: 'limit',
-                        children: [
-                            {
-                                index: true,
-                                loader: () => redirect('/categories'),
-                            },
-                            {
-                                element: <NewLimitPage />,
-                                path: 'new',
-                            },
-                        ],
-                    },
-                ],
-            },
-            {
-                path: '/scan-receipt',
-                element: <ScanReceiptPage />,
-            },
-            {
-                path: '/chat',
-                element: <ChatPage />,
-            },
-            {
-                path: '/financial-forecast',
-                element: <FinancialForecastPage />,
-            },
-        ],
+        future: routerFutureFlags,
     },
-]);
+);
 
 export const RouterProvider: FC = () => {
-    return <ReactRouter router={router} future={routerFutureFlags} />;
+    return <ReactRouter router={router} />;
 };

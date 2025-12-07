@@ -43,7 +43,8 @@ const convertBackendMessage = (msg: BackendMessage): ChatMessage => ({
 });
 
 const POLLING_INTERVAL = 2000;
-const MAX_POLLING_ATTEMPTS = 60;
+const MAX_POLLING_DURATION_MS = 3 * 60 * 60 * 1000; // wait up to 3 hours for a response
+const MAX_POLLING_ATTEMPTS = Math.ceil(MAX_POLLING_DURATION_MS / POLLING_INTERVAL);
 
 export const useChat = (options?: UseChatOptions): UseChatReturn => {
     const { initialMessage } = options || {};
@@ -227,4 +228,3 @@ export const useChat = (options?: UseChatOptions): UseChatReturn => {
         refreshMessages,
     };
 };
-

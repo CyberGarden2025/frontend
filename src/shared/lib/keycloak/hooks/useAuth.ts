@@ -19,14 +19,15 @@ export const useAuth = () => {
     if (keycloak?.authenticated) {
       try {
         await keycloak.updateToken(30);
-        localStorage.setItem('accessToken', keycloak.token)
-        return keycloak.token;
+        if (keycloak.token) {
+          localStorage.setItem('accessToken', keycloak.token);
+          return keycloak.token;
+        }
       } catch (error) {
         console.error('Failed to refresh token:', error);
-        login();
       }
     }
-    return undefined;
+    return keycloak?.token;
   };
 
   const hasRole = (role: string): boolean => {

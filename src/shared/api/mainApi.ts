@@ -64,8 +64,23 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     }
 
     if (result?.error?.status === 401 && keycloak?.authenticated) {
-        // Token likely expired or invalid; force re-login
-        keycloak.login();
+        if (import.meta.env.DEV) {
+            console.warn('[API] 401 error detected, attempting token refresh');
+        }
+        try {
+            await keycloak.updateToken(-1);
+            const newToken = keycloak.token || localStorage.getItem('accessToken');
+            if (newToken) {
+                const headers = new Headers(modifiedArgs.headers as HeadersInit | undefined);
+                headers.set('Authorization', `Bearer ${newToken}`);
+                modifiedArgs.headers = headers;
+                return await baseQuery(modifiedArgs, api, extraOptions);
+            }
+        } catch (error) {
+            if (import.meta.env.DEV) {
+                console.warn('[API] Token refresh failed, user may need to re-authenticate', error);
+            }
+        }
     }
 
     return result;
