@@ -9,6 +9,15 @@ import { createBrowserRouter, RouterProvider as ReactRouter, redirect } from 're
 import { CategoryPage, DetailedTransactionPage, NewLimitPage, NotificationsPage } from '@pages';
 import { useAutoNotification } from '@shared/lib/hooks/useAutoNotification';
 
+const routerFutureFlags = {
+    v7_startTransition: true,
+    v7_relativeSplatPath: true,
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_skipActionErrorRevalidation: true,
+} as unknown;
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -76,11 +85,8 @@ const router = createBrowserRouter([
     },
 ]);
 
-const RouterProviderInner: FC = () => {
-    useAutoNotification();
-    return <ReactRouter router={router} />;
+export const RouterProvider: FC = () => {
+    return <ReactRouter router={router} future={routerFutureFlags} />;
 };
 
-export const RouterProvider: FC = () => {
-    return <RouterProviderInner />;
-};
+

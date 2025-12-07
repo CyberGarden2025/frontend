@@ -7,7 +7,7 @@ import { sendNotificationClientLog } from '@shared/lib/notificationClientLog';
 type NotificationPermission = 'default' | 'granted' | 'denied';
 
 interface UseFirebaseNotificationsOptions {
-    userId?: number;
+    userId?: string | number;
 }
 
 interface UseFirebaseNotificationsReturn {
@@ -27,6 +27,7 @@ export const useFirebaseNotifications = (
     options?: UseFirebaseNotificationsOptions,
 ): UseFirebaseNotificationsReturn => {
     const { userId } = options || {};
+    const userIdStr = userId !== undefined && userId !== null ? String(userId) : undefined;
     const [token, setToken] = useState<string | null>(null);
     const [permission, setPermission] = useState<NotificationPermission>('default');
     const [messaging, setMessaging] = useState<Messaging | null>(null);
@@ -56,7 +57,7 @@ export const useFirebaseNotifications = (
                     setToken(currentToken);
                     sendNotificationClientLog({
                         event: 'token_received',
-                        userId,
+                        userId: userIdStr,
                         token: currentToken,
                     });
                 } else {
@@ -66,7 +67,7 @@ export const useFirebaseNotifications = (
                 console.error('Error getting token:', error);
                 sendNotificationClientLog({
                     event: 'token_receive_error',
-                    userId,
+                    userId: userIdStr,
                     payload: { error: String(error) },
                 });
             }
@@ -91,7 +92,7 @@ export const useFirebaseNotifications = (
                 });
                 sendNotificationClientLog({
                     event: 'foreground_notification_received',
-                    userId,
+                    userId: userIdStr,
                     payload,
                 });
             }
@@ -103,23 +104,23 @@ export const useFirebaseNotifications = (
     }, []);
 
     useEffect(() => {
-        if (token && !userId) {
+        if (token && !userIdStr) {
             console.warn('FCM token is available but userId is not provided, skipping backend sync');
         }
-    }, [token, userId]);
+    }, [token, userIdStr]);
 
     useEffect(() => {
-        if (!token || !userId || token === syncedToken) {
+        if (!token || !userIdStr || token === syncedToken) {
             return;
         }
 
-        updateFcmToken({ userId, fcmToken: token })
+        updateFcmToken({ userId: userIdStr, fcmToken: token })
             .unwrap()
             .then(() => {
                 setSyncedToken(token);
                 sendNotificationClientLog({
                     event: 'token_synced',
-                    userId,
+                    userId: userIdStr,
                     token,
                 });
             })
@@ -127,12 +128,12 @@ export const useFirebaseNotifications = (
                 console.error('Error saving FCM token:', error);
                 sendNotificationClientLog({
                     event: 'token_sync_error',
-                    userId,
+                    userId: userIdStr,
                     token,
                     payload: { error: String(error) },
                 });
             });
-    }, [token, userId, updateFcmToken, syncedToken]);
+    }, [token, userIdStr, updateFcmToken, syncedToken]);
 
     const requestPermission = async (): Promise<void> => {
         if (typeof window === 'undefined' || !('Notification' in window)) {
