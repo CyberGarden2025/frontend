@@ -1,0 +1,32 @@
+.wrapper {
+    padding: 16px;
+    border: 1px solid #99999940;
+    background-color: #fff;
+    border-radius: 36px;
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & .row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        & .icon {
+            border-radius: 50%;
+            border: 1px solid #99999940;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+        & .title {
+            flex: 1;
+            font-family: 'TeX Gyre Adventor';
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+}

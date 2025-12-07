@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import cls from "./ExpenseDetailed.module.scss"
 import type { ExpenseDetailedProps } from "./ExpenseDetailed.props";
-import { CardIcon, EditIcon } from "@shared/ui/icons";
+import { CardIcon, EditIcon, ReceiptIcon, ScanIcon } from "@shared/ui/icons";
 import clsx from "clsx"
 import { categoryIconMapping, readableCategory } from "@entities/expense/lib";
 import { Button } from "@shared/ui";
@@ -60,6 +60,56 @@ export const ExpenseDetailed: FC<ExpenseDetailedProps> = ({transaction}) => {
                     </div>
                 )}/>
 
+            </div>
+
+            <div className={clsx(cls.card, cls.scan)}>
+                <div className={cls.col}>
+                    <h3 className={cls.title}>Отсканируйте чек</h3>
+                    <p className={cls.text}>
+                    сохраните информацию о покупке
+                    </p>
+                    <div className={cls.icon}>
+                        <ScanIcon/>
+                    </div>
+                    <img className={cls.img} src="/scan.webp" alt="" />
+                </div>
+            </div>
+            <div className={clsx(cls.card, cls.purchases)}>
+                <div className={cls.heading}>
+                    <h4 className={cls.title}>Список покупок</h4>
+                    <div className={cls.icon}>
+                        <ReceiptIcon/>
+                    </div>
+                </div>
+                {transaction.purchases && <ul className={cls.list}>
+                        {transaction.purchases.map((item) => (
+                            <li className={cls.item}>
+                                <p className={cls.name}>
+                                    {item.name}
+                                </p>
+                                <p className={cls.count}>
+                                    {item.count}кг
+                                </p>
+                                <p className={cls.price}>
+                                    {item.price} ₽
+                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                    }
+            </div>
+            <div className={clsx(cls.card, cls.details)}>
+                <div className={cls.heading}>
+                    <h4 className={cls.title}>Реквизиты транзакции</h4>
+                </div>
+                <div className={cls.detailsWrapper}>
+                    <p className={cls.text}>
+                        Идентификатор операции
+                    </p>
+                    <h5 className={cls.subTitle}>
+                        {transaction.refNo}
+                    </h5>   
+                </div>
             </div>
         </div>
     );

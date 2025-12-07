@@ -1,0 +1,242 @@
+// Dropdown.module.scss
+.dropdownContainer {
+    width: 100%;
+    position: relative;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.required {
+    color: #ff0000;
+    margin-left: 4px;
+}
+
+.dropdownWrapper {
+    position: relative;
+    width: 100%;
+
+    &.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    &.error .dropdownTrigger {
+        border-color: #ff0000;
+    }
+
+    &.open .dropdownTrigger {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    &.multiple .dropdownTrigger {
+        min-height: 44px;
+        padding: 8px 20px;
+    }
+}
+
+.dropdownTrigger {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #e9eeea;
+    border: 1px solid #99999926;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-radius 0.2s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+.selectedContent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.selectedValue {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selectedTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    width: 100%;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: rgba(0, 100, 200, 0.15);
+    border: 1px solid rgba(0, 100, 200, 0.3);
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1;
+    color: #0064c8;
+    font-weight: 500;
+}
+
+.tagRemove {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.6;
+
+    &:hover {
+        opacity: 1;
+        color: #ff0000;
+    }
+}
+
+.tagRemoveIcon {
+    width: 12px;
+    height: 12px;
+}
+
+.clearAll {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 8px;
+
+    &:hover {
+        color: #ff0000;
+        text-decoration: underline;
+    }
+}
+
+.chevron {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+    margin-left: 8px;
+    flex-shrink: 0;
+
+    &.rotated {
+        transform: rotate(180deg);
+    }
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #e9eeea;
+    border: 1px solid #99999926;
+    border-top: none;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #777676 #e9eeea;
+}
+
+.selectionLimit {
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #666;
+    border-bottom: 1px solid #99999926;
+}
+
+.dropdownItem {
+    width: 100%;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #000;
+    position: relative;
+
+    &:hover:not(.disabledItem) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &.selected {
+        color: #50b848;
+        font-weight: 600;
+        padding-right: 40px; // Добавляем место для иконки
+
+        &:hover {
+            background-color: rgba(0, 100, 200, 0.2);
+        }
+    }
+
+    &.disabledItem {
+        opacity: 0.5;
+        cursor: not-allowed;
+        color: #666;
+    }
+
+    &:last-child {
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+    }
+}
+
+.selectedIndicator {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selectedIcon {
+    width: 16px;
+    height: 16px;
+    color: #0064c8;
+}
+
+.limitMessage {
+    font-size: 11px;
+    color: #ff6b6b;
+    opacity: 0.8;
+}
+
+.noOptions {
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.errorMessage {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #ff0000;
+}

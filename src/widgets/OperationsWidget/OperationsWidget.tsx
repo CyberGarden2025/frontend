@@ -3,6 +3,7 @@ import { type FC, type ReactNode, useEffect } from 'react';
 import { IconButton, Button } from '@shared/ui';
 import { useGetMonthSummaryMutation } from '@shared/api';
 import styles from './OperationsWidget.module.scss';
+import { FinanceBarWidget } from '@widgets/FInanceBarWidget';
 
 export interface OperationsWidgetProps {
     title: string;
@@ -75,48 +76,7 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
                 />
             </div>
 
-            <div className={styles.content}>
-                <div className={styles.sectionsRow}>
-                <div className={styles.incomeSection}>
-                    <div className={styles.label}>Поступления</div>
-                    <div className={styles.amount}>
-                        <span className={styles.amountValue}>{incomeFormatted}</span>
-                        <span className={styles.currency}>₽</span>
-                    </div>
-                </div>
-
-                <div className={styles.expensesSection}>
-                    <div className={styles.label}>Расходы</div>
-                    <div className={styles.amount}>
-                        <span className={styles.amountValue}>{expensesFormatted}</span>
-                        <span className={styles.currency}>₽</span>
-                    </div>
-                    </div>
-                </div>
-
-                    <div className={styles.barContainer}>
-                    <div className={styles.divider} />
-                    <div className={styles.barsWrapper}>
-                        <div
-                            className={clsx(styles.bar, styles.barIncome)}
-                            style={{
-                                height: `${incomeBarHeight}px`,
-                                flexGrow: income,
-                                flexBasis: 0,
-                            }}
-                        />
-                        <div className={styles.divider} />
-                        <div
-                            className={clsx(styles.bar, styles.barExpenses)}
-                            style={{
-                                height: `${expensesBarHeight}px`,
-                                flexGrow: expenses,
-                                flexBasis: 0,
-                            }}
-                        />
-                    </div>
-                </div>
-            </div>
+            <FinanceBarWidget income={1200.22} expense={2000.20}/>
         </div>
     );
 };

@@ -1,0 +1,54 @@
+.root {
+    min-height: 100vh;
+    background-color: #e9eeea;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+
+    & .container {
+        max-width: 358px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 32px 0 0 0;
+        position: relative;
+        z-index: 1;
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .headerTop {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .headerTopRight {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .title {
+            font-family: 'TeX Gyre Adventor', sans-serif;
+            font-weight: 400;
+            font-size: 24px;
+            color: #000000;
+            margin: 0;
+            flex: 1;
+            align-self: center;
+            margin-right: 40px;
+            text-align: center;
+        }
+    }
+}
