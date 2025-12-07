@@ -3,6 +3,7 @@ import { type FC, type ReactNode, useEffect } from 'react';
 import { IconButton, Button } from '@shared/ui';
 import { useGetMonthSummaryMutation } from '@shared/api';
 import styles from './OperationsWidget.module.scss';
+import { useKeycloak } from '@react-keycloak/web';
 
 export interface OperationsWidgetProps {
     title: string;
@@ -28,13 +29,15 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
     style,
 }) => {
     const [getMonthSummary, { data: monthSummaryData }] = useGetMonthSummaryMutation();
+    const { keycloak } = useKeycloak();
+    const isAuthed = keycloak?.authenticated;
 
     useEffect(() => {
+        if (!isAuthed) return;
         getMonthSummary({
-            userId: 1,
             monthDate: '01/12/2023',
         });
-    }, [getMonthSummary]);
+    }, [getMonthSummary, isAuthed]);
 
     const formatAmount = (amount: number): string => {
         return amount.toLocaleString('ru-RU');
@@ -120,4 +123,3 @@ export const OperationsWidget: FC<OperationsWidgetProps> = ({
         </div>
     );
 };
-

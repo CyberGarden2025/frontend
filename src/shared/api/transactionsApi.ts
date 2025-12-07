@@ -12,12 +12,6 @@ export interface BackendTransactionDay {
     transaction: BackendTransaction[];
 }
 
-export interface TransactionsTotalParams {
-    userId: number;
-    start: string;
-    end: string;
-}
-
 export interface TransactionsTotalResponse {
     income: number;
     expense: number;
@@ -76,34 +70,34 @@ export const transactionsApi = mainApi.injectEndpoints({
     endpoints: (builder) => ({
         getTransactions: builder.query<BackendTransactionDay[], null>({
             query: () => ({
-                url: `http://localhost:3000/api/transactions`,
+                url: `/transactions`,
                 method: 'GET',
             }),
         }),
-        getTransactionsTotal: builder.query<TransactionsTotalResponse, TransactionsTotalParams>({
-            query: ({ userId, start, end }) => ({
-                url: `http://localhost:3000/api/transactions/${userId}/total`,
+        getTransactionsTotal: builder.query<TransactionsTotalResponse, { start: string; end: string }>({
+            query: ({ start, end }) => ({
+                url: `/transactions/total`,
                 method: 'GET',
                 params: { start, end },
             }),
         }),
-        getExpensesChart: builder.mutation<ExpensesChartResponse, { userId: number; startDate: string }>({
-            query: ({ userId, startDate }) => ({
-                url: `/transactions/${userId}/expenses-chart`,
+        getExpensesChart: builder.mutation<ExpensesChartResponse, { startDate: string }>({
+            query: ({ startDate }) => ({
+                url: `/transactions/expenses-chart`,
                 method: 'POST',
                 body: { startDate },
             }),
         }),
-        getMonthSummary: builder.mutation<MonthSummaryResponse, { userId: number; monthDate: string }>({
-            query: ({ userId, monthDate }) => ({
-                url: `/transactions/${userId}/month-summary`,
+        getMonthSummary: builder.mutation<MonthSummaryResponse, { monthDate: string }>({
+            query: ({ monthDate }) => ({
+                url: `/transactions/month-summary`,
                 method: 'POST',
                 body: { monthDate },
             }),
         }),
-        getCategoriesMonth: builder.mutation<CategoriesMonthResponse, { userId: number; monthDate: string }>({
-            query: ({ userId, monthDate }) => ({
-                url: `/transactions/${userId}/categories-month`,
+        getCategoriesMonth: builder.mutation<CategoriesMonthResponse, { monthDate: string }>({
+            query: ({ monthDate }) => ({
+                url: `/transactions/categories-month`,
                 method: 'POST',
                 body: { monthDate },
             }),
@@ -112,4 +106,3 @@ export const transactionsApi = mainApi.injectEndpoints({
 });
 
 export const { useGetTransactionsQuery, useGetTransactionsTotalQuery, useGetExpensesChartMutation, useGetMonthSummaryMutation, useGetCategoriesMonthMutation } = transactionsApi;
-

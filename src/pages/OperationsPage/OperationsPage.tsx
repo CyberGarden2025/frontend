@@ -14,6 +14,7 @@ import {
 } from '@shared/ui/icons';
 import styles from './OperationsPage.module.scss';
 import { ExpenseAddModal } from '@entities/expense';
+import { useKeycloak } from '@react-keycloak/web';
 
 const categoryLabels: Record<string, string> = {
     Food: 'Еда',
@@ -50,14 +51,20 @@ const getOperationLabel = (category: string): string => {
 
 export const OperationsPage: FC = () => {
     const navigate = useNavigate();
+    const { keycloak } = useKeycloak();
     const [addModalOpen, setAddModalOpen] = useState<boolean>(false)
-    const { data: backendTransactions, isLoading, error } = useGetTransactionsQuery(null);
-    
-    const { data: totalData } = useGetTransactionsTotalQuery({
-        userId: 1,
-        start: '2023-08-01',
-        end: '2023-08-31',
+    const isAuthed = keycloak?.authenticated;
+    const { data: backendTransactions, isLoading, error } = useGetTransactionsQuery(null, {
+        skip: !isAuthed,
     });
+    
+    const { data: totalData } = useGetTransactionsTotalQuery(
+        {
+            start: '2023-08-01',
+            end: '2023-08-31',
+        },
+        { skip: !isAuthed },
+    );
 
     const transactions: Transaction[] = useMemo(() => {
         if (!backendTransactions) {
@@ -168,4 +175,3 @@ export const OperationsPage: FC = () => {
         </div>
     );
 };
-

@@ -1,9 +1,6 @@
 import { type BaseQueryFn, type FetchArgs, fetchBaseQuery, type FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { createApi } from '@reduxjs/toolkit/query/react';
-
-interface RefreshResponse {
-    accessToken: string;
-}
+import { keycloak } from '../../kcProvider';
 
 const ensureProtocol = (host: string): string => {
     if (!host) {
@@ -25,13 +22,6 @@ if (import.meta.env.DEV) {
 const baseQuery = fetchBaseQuery({
     baseUrl: apiBaseUrl,
     credentials: 'include',
-    prepareHeaders: headers => {
-        const accessToken = localStorage.getItem('accessToken');
-        if (accessToken) {
-            headers.set('Authorization', `Bearer ${accessToken}`);
-        }
-        return headers;
-    },
 });
 
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
@@ -39,28 +29,43 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     api,
     extraOptions,
 ) => {
-    let result = await baseQuery(args, api, extraOptions);
+    const modifiedArgs: FetchArgs =
+        typeof args === 'string'
+            ? { url: args }
+            : {
+                  ...args,
+              };
 
-    if (result?.error) {
+    try {
+        if (keycloak?.authenticated) {
+            await keycloak.updateToken(30);
+        }
+    } catch (error) {
         if (import.meta.env.DEV) {
-            console.error('[API] Request error:', {
-                status: result.error.status,
-                data: result.error.data,
-                url: typeof args === 'string' ? args : args.url,
-            });
+            console.warn('[API] Failed to refresh Keycloak token', error);
         }
     }
 
-    if (result?.error?.status === 401) {
-        const refreshResult = await baseQuery('/auth/refresh-tokens', api, extraOptions);
+    const token = keycloak?.token || localStorage.getItem('accessToken');
+    if (token) {
+        const headers = new Headers(modifiedArgs.headers as HeadersInit | undefined);
+        headers.set('Authorization', `Bearer ${token}`);
+        modifiedArgs.headers = headers;
+    }
 
-        if (refreshResult.data) {
-            const { accessToken } = refreshResult.data as RefreshResponse;
-            localStorage.setItem('accessToken', accessToken.split(' ')[1]);
-            result = await baseQuery(args, api, extraOptions);
-        } else {
-            localStorage.removeItem('accessToken');
-        }
+    const result = await baseQuery(modifiedArgs, api, extraOptions);
+
+    if (result?.error && import.meta.env.DEV) {
+        console.error('[API] Request error:', {
+            status: result.error.status,
+            data: result.error.data,
+            url: typeof args === 'string' ? args : args.url,
+        });
+    }
+
+    if (result?.error?.status === 401 && keycloak?.authenticated) {
+        // Token likely expired or invalid; force re-login
+        keycloak.login();
     }
 
     return result;
@@ -70,7 +75,7 @@ const mainApi = createApi({
     reducerPath: 'mainApi',
     baseQuery: baseQueryWithReauth,
     endpoints: builder => ({
-        updateFcmToken: builder.mutation<void, { userId: number; fcmToken: string }>({
+        updateFcmToken: builder.mutation<void, { userId: string; fcmToken: string }>({
             query: ({ userId, fcmToken }) => ({
                 url: '/notifications/token',
                 method: 'PATCH',

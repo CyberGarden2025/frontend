@@ -5,6 +5,7 @@ import type { Category } from '@shared/ui';
 import { useGetCategoriesMonthMutation } from '@shared/api';
 import { getCategoryLabel } from '@shared/lib/utils/categoryLabels';
 import styles from './CategoriesWidget.module.scss';
+import { useKeycloak } from '@react-keycloak/web';
 
 export interface CategoriesWidgetProps {
     title: string;
@@ -31,13 +32,15 @@ export const CategoriesWidget: FC<CategoriesWidgetProps> = ({
     style,
 }) => {
     const [getCategoriesMonth, { data: categoriesData }] = useGetCategoriesMonthMutation();
+    const { keycloak } = useKeycloak();
+    const isAuthed = keycloak?.authenticated;
 
     useEffect(() => {
+        if (!isAuthed) return;
         getCategoriesMonth({
-            userId: 1,
             monthDate: '01/12/2023',
         });
-    }, [getCategoriesMonth]);
+    }, [getCategoriesMonth, isAuthed]);
 
     const categories: Category[] = categoriesData?.categories
         ? categoriesData.categories.map(cat => ({
@@ -94,4 +97,3 @@ export const CategoriesWidget: FC<CategoriesWidgetProps> = ({
         </div>
     );
 };
-
